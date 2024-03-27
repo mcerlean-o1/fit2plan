@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".MainActivity">
+
+        <ImageView
+            android:layout_width="177dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="108dp"
+            android:background="@drawable/fit_two_plan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.oisin.fit2plan.CoreFourView
+            android:id="@+id/core_four_view"
+            android:layout_width="match_parent"
+            android:layout_height="750dp"
+            android:layout_marginTop="68dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+
+        </com.oisin.fit2plan.CoreFourView>
+
+
+        <Button
+            android:id="@+id/btnWorkoutDiary"
+            android:layout_width="156dp"
+            android:layout_height="60dp"
+            android:background="@drawable/log_button"
+            android:elevation="9dp"
+            android:text="Workout Diary"
+            android:textStyle="bold"
+            android:layout_marginStart="28dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <Button
+            android:id="@+id/btnFoodDiary"
+            android:layout_width="156dp"
+            android:layout_height="60dp"
+            android:background="@drawable/log_button"
+            android:elevation="9dp"
+            android:text="Food Diary"
+            android:textStyle="bold"
+            android:layout_marginEnd="28dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

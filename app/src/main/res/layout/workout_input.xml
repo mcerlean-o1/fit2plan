@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/edt_a1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="A1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_date"
+        app:layout_editor_absoluteX="0dp" />
+
+
+    <EditText
+        android:id="@+id/edt_date"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Note Date"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edt_a2"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="A2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_a1" />
+
+    <EditText
+        android:id="@+id/edt_b1"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="B1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_a2" />
+
+    <EditText
+        android:id="@+id/edt_b2"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="B2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_b1" />
+
+    <EditText
+        android:id="@+id/edt_c1"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="C1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_b2" />
+    <EditText
+        android:id="@+id/edt_c2"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="C2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_c1" />
+
+    <EditText
+        android:id="@+id/edt_multiNotes"
+        android:layout_width="match_parent"
+        android:layout_height="108dp"
+        android:layout_marginTop="48dp"
+        android:hint="Notes"
+        android:inputType="textMultiLine"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_c1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

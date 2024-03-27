@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageButton
+            android:id="@+id/goodness_in"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="44dp"
+            android:background="@drawable/core_four_button"
+            android:src="@drawable/heart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/fitness"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="52dp"
+            android:background="@drawable/core_four_button"
+            android:src="@drawable/fitness"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/goodness_in" />
+
+        <ImageButton
+            android:id="@+id/hydration"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="44dp"
+            android:background="@drawable/core_four_button"
+            android:baselineAligned="false"
+            android:src="@drawable/hydration"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.226"
+            app:layout_constraintStart_toEndOf="@+id/goodness_in"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/sleep"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="52dp"
+            android:background="@drawable/core_four_button"
+            android:baselineAligned="false"
+            android:src="@drawable/sleep"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.226"
+            app:layout_constraintStart_toEndOf="@+id/goodness_in"
+            app:layout_constraintTop_toBottomOf="@+id/hydration" />
+
+        <ProgressBar
+            android:id="@+id/core4Bar"
+            style="@style/CounterViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_marginTop="328dp"
+            android:max="100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/core4Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:textSize="40dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/core4Bar"
+                app:layout_constraintEnd_toEndOf="@id/core4Bar"
+                app:layout_constraintStart_toStartOf="@id/core4Bar"
+                app:layout_constraintTop_toTopOf="@+id/core4Bar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1098200231054",
+    "project_id": "fit2plan-b9a41",
+    "storage_bucket": "fit2plan-b9a41.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1098200231054:android:f02e2f6c01d4ef16452ddf",
+        "android_client_info": {
+          "package_name": "com.oisin.fit2plan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_yYjq6bJqDWUsSIPGRfVnmoPLLBPb-q4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
