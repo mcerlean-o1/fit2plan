@@ -5,25 +5,23 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import androidx.core.content.ContextCompat;
-
 import java.util.ArrayList;
 
-public class NoteHandler extends DatabaseHelper {
-    public NoteHandler(Context context) {
+public class FoodHandler extends FoodDatabase {
+    public FoodHandler(Context context) {
         super(context);
     }
 
-    public boolean create(Note note) {
+    public boolean create(Food food) {
 
         ContentValues values = new ContentValues();
 
-        values.put("title",note.getTitle());
-        values.put("breakfast",note.getBreakfast());
-        values.put("snack1",note.getSnack1());
-        values.put("lunch",note.getLunch());
-        values.put("snack2",note.getSnack2());
-        values.put("dinner",note.getDinner());
+        values.put("date", food.getDate());
+        values.put("breakfast", food.getBreakfast());
+        values.put("snack1", food.getSnack1());
+        values.put("lunch", food.getLunch());
+        values.put("snack2", food.getSnack2());
+        values.put("dinner", food.getDinner());
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -33,8 +31,8 @@ public class NoteHandler extends DatabaseHelper {
 
     }
 
-    public ArrayList<Note> readNotes() {
-        ArrayList<Note> notes = new ArrayList<>();
+    public ArrayList<Food> readFoods() {
+        ArrayList<Food> foods = new ArrayList<>();
 
         String sqlQuery = "SELECT * FROM Food ORDER BY id ASC";
 
@@ -45,61 +43,61 @@ public class NoteHandler extends DatabaseHelper {
         if (cursor.moveToFirst()) {
             do {
                 int id = Integer.parseInt(cursor.getString(cursor.getColumnIndex("id")));
-                String title = cursor.getString(cursor.getColumnIndex("title"));
+                String date = cursor.getString(cursor.getColumnIndex("date"));
                 String breakfast = cursor.getString(cursor.getColumnIndex("breakfast"));
                 String snack1 = cursor.getString(cursor.getColumnIndex("snack1"));
                 String lunch = cursor.getString(cursor.getColumnIndex("lunch"));
                 String snack2 = cursor.getString(cursor.getColumnIndex("snack2"));
                 String dinner = cursor.getString(cursor.getColumnIndex("dinner"));
 
-                Note note = new Note(title, breakfast, snack1, lunch, snack2, dinner);
-                note.setId(id);
-                notes.add(note);
+                Food food = new Food(date, breakfast, snack1, lunch, snack2, dinner);
+                food.setId(id);
+                foods.add(food);
             } while (cursor.moveToNext());
 
             cursor.close();
             db.close();
         }
-        return notes;
+        return foods;
     }
 
-    public Note readSingleNote(int id){
-        Note note = null;
+    public Food readSingleFood(int id){
+        Food food = null;
         String sqlQuery = "SELECT * FROM Food WHERE id="+id;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(sqlQuery,null);
 
         if(cursor.moveToFirst()){
-            int noteId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("id")));
-            String title = cursor.getString(cursor.getColumnIndex("title"));
+            int foodId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("id")));
+            String date = cursor.getString(cursor.getColumnIndex("date"));
             String breakfast = cursor.getString(cursor.getColumnIndex("breakfast"));
             String snack1 = cursor.getString(cursor.getColumnIndex("snack1"));
             String lunch = cursor.getString(cursor.getColumnIndex("lunch"));
             String snack2 = cursor.getString(cursor.getColumnIndex("snack2"));
             String dinner = cursor.getString(cursor.getColumnIndex("dinner"));
 
-            note = new Note(title, breakfast, snack1,
+            food = new Food(date, breakfast, snack1,
                     lunch, snack2, dinner);
-            note.setId(noteId);
+            food.setId(foodId);
         }
 
         cursor.close();
         db.close();
-        return note;
+        return food;
     }
 
-    public boolean update(Note note) {
+    public boolean update(Food food) {
         ContentValues values = new ContentValues();
-        values.put("title", note.getTitle());
-        values.put("breakfast", note.getBreakfast());
-        values.put("snack1", note.getSnack1());
-        values.put("lunch", note.getLunch());
-        values.put("snack2", note.getSnack2());
-        values.put("dinner", note.getDinner());
+        values.put("date", food.getDate());
+        values.put("breakfast", food.getBreakfast());
+        values.put("snack1", food.getSnack1());
+        values.put("lunch", food.getLunch());
+        values.put("snack2", food.getSnack2());
+        values.put("dinner", food.getDinner());
 
         SQLiteDatabase db = this.getWritableDatabase();
 
-        boolean isSuccessful = db.update("Food", values, "id='"+note.getId()+"'", null) > 0;
+        boolean isSuccessful = db.update("Food", values, "id='"+ food.getId()+"'", null) > 0;
 
         db.close();
         return isSuccessful;

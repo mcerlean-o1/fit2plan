@@ -4,13 +4,13 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class FoodDatabase extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     private static final String DATABASE_NAME = "FoodDatabase";
 
 
-    public DatabaseHelper(Context context) {
+    public FoodDatabase(Context context) {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
 
     }
@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         String sqlQuery = "CREATE TABLE Food ( id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "title TEXT," +
+                "date DATE," +
                 "breakfast TEXT," +
                 "snack1 TEXT," +
                 "lunch TEXT," +

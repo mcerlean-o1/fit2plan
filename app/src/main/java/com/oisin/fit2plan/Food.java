@@ -1,9 +1,9 @@
 package com.oisin.fit2plan;
 
-public class Note {
+public class Food {
 
     private int id;
-    private String title;
+    private String date;
     private String breakfast;
     private String snack1;
     private String lunch;
@@ -11,8 +11,8 @@ public class Note {
     private String dinner;
 
 
-    public Note(String title, String breakfast, String snack1, String lunch, String snack2, String dinner) {
-        this.title = title;
+    public Food(String date, String breakfast, String snack1, String lunch, String snack2, String dinner) {
+        this.date = date;
         this.breakfast = breakfast;
         this.snack1 = snack1;
         this.lunch = lunch;
@@ -28,12 +28,12 @@ public class Note {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getDate() {
+        return date;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getBreakfast() {

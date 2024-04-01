@@ -52,7 +52,7 @@
             android:name=".FoodDiary"
             android:exported="false" />
         <activity
-            android:name=".EditNote"
+            android:name=".EditFood"
             android:exported="false" />
     </application>
 

@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
-    tools:context=".EditNote">
+    tools:context=".EditWorkout">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="519dp"
         android:elevation="9dp"
+        android:transitionName="expanding_transition"
         android:layout_marginHorizontal="10dp"
         app:cardCornerRadius="9dp"
         app:cardBackgroundColor="@color/cardColor"
@@ -45,16 +46,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edt_edit_b1" />
 
-            <EditText
-                android:id="@+id/edt_edit_b2reps"
-                android:layout_width="55dp"
-                android:layout_height="45dp"
-                android:gravity="center"
-                android:text="Reps"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/edt_edit_b2"
-                app:layout_constraintTop_toBottomOf="@+id/edt_edit_date" />
 
             <EditText
                 android:id="@+id/edt_edit_c1"

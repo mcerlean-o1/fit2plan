@@ -1,7 +1,6 @@
 package com.oisin.fit2plan;
 
 import android.content.Context;
-import android.transition.Transition;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,46 +14,46 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHolder> {
+public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodHandler> {
 
-    ArrayList<Note> notes;
+    ArrayList<Food> foods;
     Context context;
     ItemClicked itemClicked;
     ViewGroup parent;
-    public NoteAdapter(ArrayList<Note> arrayList, Context context, ItemClicked itemClicked) {
-        notes = arrayList;
+    public FoodAdapter(ArrayList<Food> arrayList, Context context, ItemClicked itemClicked) {
+        foods = arrayList;
         this.context = context;
         this.itemClicked = itemClicked;
     }
     @NonNull
     @Override
-    public NoteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.note_holder,parent,false);
+    public FoodHandler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.food_holder,parent,false);
         this.parent = parent;
 
-        return new NoteHolder(view);
+        return new FoodHandler(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NoteHolder holder, int position) {
-        holder.title.setText(notes.get(position).getTitle());
-        holder.breakfast.setText(notes.get(position).getBreakfast());
-        holder.snack1.setText(notes.get(position).getSnack1());
-        holder.lunch.setText(notes.get(position).getLunch());
-        holder.snack2.setText(notes.get(position).getSnack2());
-        holder.dinner.setText(notes.get(position).getDinner());
+    public void onBindViewHolder(@NonNull FoodHandler holder, int position) {
+        holder.date.setText(foods.get(position).getDate());
+        holder.breakfast.setText(foods.get(position).getBreakfast());
+        holder.snack1.setText(foods.get(position).getSnack1());
+        holder.lunch.setText(foods.get(position).getLunch());
+        holder.snack2.setText(foods.get(position).getSnack2());
+        holder.dinner.setText(foods.get(position).getDinner());
 
     }
 
 
     @Override
     public int getItemCount() {
-        return notes.size();
+        return foods.size();
     }
 
-    class NoteHolder extends RecyclerView.ViewHolder {
+    class FoodHandler extends RecyclerView.ViewHolder {
 
-        TextView title;
+        TextView date;
         TextView breakfast;
         TextView snack1;
         TextView lunch;
@@ -63,10 +62,10 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHolder> {
         Button edit_button;
 
 
-        public NoteHolder(@NonNull View itemView) {
+        public FoodHandler(@NonNull View itemView) {
             super(itemView);
 
-            title = itemView.findViewById(R.id.txt_note_day);
+            date = itemView.findViewById(R.id.txt_note_day);
             breakfast = itemView.findViewById(R.id.breakfast);
             snack1 = itemView.findViewById(R.id.snack1);
             lunch = itemView.findViewById(R.id.lunch);

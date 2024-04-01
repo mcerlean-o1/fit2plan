@@ -1,14 +1,5 @@
 package com.oisin.fit2plan;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.view.ViewCompat;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -19,20 +10,25 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 public class FoodDiary extends AppCompatActivity {
 
     Button button;
-    ArrayList<Note> notes;
+    ArrayList<Food> foods;
     RecyclerView recyclerView;
-    NoteAdapter noteAdapter;
-
-    ImageView image;
+    FoodAdapter foodAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +39,8 @@ public class FoodDiary extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 LayoutInflater inflater = (LayoutInflater) FoodDiary.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View viewInput = inflater.inflate(R.layout.note_input,null,false);
-                EditText edtTitle = viewInput.findViewById(R.id.edt_title);
+                View viewInput = inflater.inflate(R.layout.food_input,null,false);
+                EditText edtDate = viewInput.findViewById(R.id.edt_title);
                 EditText edtBreakfast = viewInput.findViewById(R.id.edt_breakfast);
                 EditText edtSnack1 = viewInput.findViewById(R.id.edt_snack1);
                 EditText edtLunch = viewInput.findViewById(R.id.edt_lunch);
@@ -55,24 +51,24 @@ public class FoodDiary extends AppCompatActivity {
 
                 new AlertDialog.Builder(FoodDiary.this)
                         .setView(viewInput)
-                        .setTitle("Add Note")
+                        .setTitle("Add Food")
                         .setPositiveButton("Add", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                String title =  edtTitle.getText().toString();
+                                String date =  edtDate.getText().toString();
                                 String breakfast =  edtBreakfast.getText().toString();
                                 String snack1 =  edtSnack1.getText().toString();
                                 String lunch =  edtLunch.getText().toString();
                                 String snack2 =  edtSnack2.getText().toString();
                                 String dinner =  edtDinner.getText().toString();
 
-                                Note note = new Note(title,breakfast,snack1,lunch,snack2,dinner);
+                                Food food = new Food(date,breakfast,snack1,lunch,snack2,dinner);
 
-                                boolean isInserted = new NoteHandler(FoodDiary.this).create(note);
+                                boolean isInserted = new FoodHandler(FoodDiary.this).create(food);
                                 
                                 if (isInserted){
                                     Toast.makeText(FoodDiary.this, "Entry Saved", Toast.LENGTH_SHORT).show();
-                                    loadNotes();
+                                    loadFoods();
                                 } else {
                                     Toast.makeText(FoodDiary.this, "Unable to save entry", Toast.LENGTH_SHORT).show();
                                 }
@@ -93,46 +89,46 @@ public class FoodDiary extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                new NoteHandler(FoodDiary.this).delete(notes.get(viewHolder.getAdapterPosition()).getId());
-                notes.remove(viewHolder.getAdapterPosition());
-                noteAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                new FoodHandler(FoodDiary.this).delete(foods.get(viewHolder.getAdapterPosition()).getId());
+                foods.remove(viewHolder.getAdapterPosition());
+                foodAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
             }
         };
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemTouchCallback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
-        loadNotes();
+        loadFoods();
     }
 
-    public ArrayList<Note> readNotes(){
-        ArrayList<Note> notes = new NoteHandler(this).readNotes();
-        return notes;
+    public ArrayList<Food> readFoods(){
+        ArrayList<Food> foods = new FoodHandler(this).readFoods();
+        return foods;
     }
 
-    public void loadNotes(){
-        notes = readNotes();
-        noteAdapter = new NoteAdapter(notes, this, new NoteAdapter.ItemClicked() {
+    public void loadFoods(){
+        foods = readFoods();
+        foodAdapter = new FoodAdapter(foods, this, new FoodAdapter.ItemClicked() {
             @Override
             public void onClick(int position, View view) {
-                editNote(notes.get(position).getId(),view);
+                editFood(foods.get(position).getId(),view);
             }
         });
-        recyclerView.setAdapter(noteAdapter);
+        recyclerView.setAdapter(foodAdapter);
 
     }
 
-    private void editNote(int noteId, View view){
-        NoteHandler noteHandler =new NoteHandler(this);
-        Note note = noteHandler.readSingleNote(noteId);
-        Intent intent = new Intent(this,EditNote.class);
-        intent.putExtra("title", note.getTitle());
-        intent.putExtra("breakfast", note.getBreakfast());
-        intent.putExtra("snack1", note.getSnack1());
-        intent.putExtra("lunch", note.getLunch());
-        intent.putExtra("snack2", note.getSnack2());
-        intent.putExtra("dinner", note.getDinner());
-        intent.putExtra("id", note.getId());
+    private void editFood(int foodId, View view){
+        FoodHandler foodHandler =new FoodHandler(this);
+        Food food = foodHandler.readSingleFood(foodId);
+        Intent intent = new Intent(this,EditFood.class);
+        intent.putExtra("date", food.getDate());
+        intent.putExtra("breakfast", food.getBreakfast());
+        intent.putExtra("snack1", food.getSnack1());
+        intent.putExtra("lunch", food.getLunch());
+        intent.putExtra("snack2", food.getSnack2());
+        intent.putExtra("dinner", food.getDinner());
+        intent.putExtra("id", food.getId());
 
         ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this, view, ViewCompat.getTransitionName(view));
         startActivityForResult(intent,1,optionsCompat.toBundle());
@@ -143,7 +139,7 @@ public class FoodDiary extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 1) {
-            loadNotes();
+            loadFoods();
 
         }
     }

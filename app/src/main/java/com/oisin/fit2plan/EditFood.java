@@ -1,7 +1,5 @@
 package com.oisin.fit2plan;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.transition.TransitionManager;
@@ -11,21 +9,23 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class EditNote extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class EditFood extends AppCompatActivity {
 
 
     Button edtCancel, edtSave;
-    EditText edtTitle, edtBreakfast, edtSnack1, edtLunch, edtSnack2, edtDinner;
+    EditText edtDate, edtBreakfast, edtSnack1, edtLunch, edtSnack2, edtDinner;
     LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_note);
+        setContentView(R.layout.activity_edit_food);
 
         Intent intent = getIntent();
         linearLayout = findViewById(R.id.btn_holder);
-        edtTitle = findViewById(R.id.edt_edit_title);
+        edtDate = findViewById(R.id.edt_edit_title);
         edtBreakfast = findViewById(R.id.edt_edit_breakfast);
         edtSnack1 = findViewById(R.id.edt_edit_snack1);
         edtLunch = findViewById(R.id.edt_edit_lunch);
@@ -46,17 +46,17 @@ public class EditNote extends AppCompatActivity {
         edtSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Note note = new Note(edtTitle.getText().toString(),
+                Food food = new Food(edtDate.getText().toString(),
                         edtBreakfast.getText().toString(),
                         edtSnack1.getText().toString(),
                         edtLunch.getText().toString(),
                         edtSnack2.getText().toString(),
                         edtDinner.getText().toString());
-                note.setId(intent.getIntExtra("id",1));
-                if (new NoteHandler(EditNote.this).update(note)){
-                    Toast.makeText(EditNote.this, "Changes saved", Toast.LENGTH_SHORT).show();
+                food.setId(intent.getIntExtra("id",1));
+                if (new FoodHandler(EditFood.this).update(food)){
+                    Toast.makeText(EditFood.this, "Changes saved", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(EditNote.this, "Unable to make changes", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditFood.this, "Unable to make changes", Toast.LENGTH_SHORT).show();
                 }
                 onBackPressed();
             }
@@ -64,7 +64,7 @@ public class EditNote extends AppCompatActivity {
         });
 
 
-        edtTitle.setText(intent.getStringExtra("title"));
+        edtDate.setText(intent.getStringExtra("date"));
         edtBreakfast.setText(intent.getStringExtra("breakfast"));
         edtSnack1.setText(intent.getStringExtra("snack1"));
         edtLunch.setText(intent.getStringExtra("lunch"));
