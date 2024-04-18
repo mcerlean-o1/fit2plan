@@ -6,94 +6,35 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/edt_breakfast"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Breakfast"
-        app:layout_constraintTop_toBottomOf="@+id/edt_title"
+        android:id="@+id/edt_meal_description"
+        android:layout_width="406dp"
+        android:layout_height="90dp"
+        android:hint="Meal Description"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/meal_type"
         app:layout_editor_absoluteX="0dp" />
 
-    <EditText
-        android:id="@+id/edt_title"
+    <Spinner
+        android:id="@+id/meal_type"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Note title"
+        android:layout_height="50dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edt_snack1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Snack #1"
-        app:layout_constraintTop_toBottomOf="@+id/edt_breakfast" />
-
-    <EditText
-        android:id="@+id/edt_lunch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Lunch"
-        app:layout_constraintTop_toBottomOf="@+id/edt_snack1"  />
-
-    <EditText
-        android:id="@+id/edt_snack2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Snack #2"
-        app:layout_constraintTop_toBottomOf="@+id/edt_lunch"  />
-    <EditText
-        android:id="@+id/edt_dinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Dinner"
-        app:layout_constraintTop_toBottomOf="@+id/edt_snack2"  />
-
     <Button
         android:id="@+id/camera_button1"
-        android:layout_width="33dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="7dp"
+        android:layout_width="58dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/camera"
-        app:layout_constraintBottom_toBottomOf="@+id/edt_breakfast"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/edt_breakfast"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/camera_button2"
-        android:layout_width="33dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/camera"
-        app:layout_constraintBottom_toBottomOf="@+id/edt_snack1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/edt_snack1"
-        app:layout_constraintVertical_bias="0.0" />
-    <Button
-        android:id="@+id/camera_button4"
-        android:layout_width="33dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/camera"
-        app:layout_constraintBottom_toBottomOf="@+id/edt_lunch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/edt_lunch"
-        app:layout_constraintVertical_bias="0.0" />
-    <Button
-        android:id="@+id/camera_button5"
-        android:layout_width="33dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/camera"
-        app:layout_constraintBottom_toBottomOf="@+id/edt_snack2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/edt_snack2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/edt_meal_description" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

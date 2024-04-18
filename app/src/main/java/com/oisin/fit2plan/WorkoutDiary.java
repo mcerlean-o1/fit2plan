@@ -26,6 +26,7 @@ import java.util.ArrayList;
 public class WorkoutDiary extends AppCompatActivity {
 
     Button workout_button;
+    Button workout_body_button;
     ArrayList<Workout> workouts;
     RecyclerView recyclerView;
     WorkoutAdapter workoutAdapter;
@@ -35,6 +36,7 @@ public class WorkoutDiary extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout_diary);
         workout_button = findViewById(R.id.workout_add_button);
+        workout_body_button = findViewById(R.id.workout_body_button);
         workout_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +82,13 @@ public class WorkoutDiary extends AppCompatActivity {
                             }
                         }).show();
 
+            }
+        });
+
+        workout_body_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(WorkoutDiary.this, InteractiveBody.class));
             }
         });
         recyclerView = findViewById(R.id.recycler);
