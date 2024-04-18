@@ -1,0 +1,32 @@
+<resources>
+    
+    <string name="bench_press">Using a Barbell or Dumbbells,
+        lie flat on the bench and keep feet flat on the floor.
+        Lock your shoulders in and keep it outside shoulder width.
+        Engage your glutes and core. Squeeze your chest to lift the weights.
+        Take a deep breathe and proceed to bring the weight to chest level.
+        Then bring the weight up to the starting position while exhaling. </string>
+
+    <string name="chest_fly"> Using dumbbells and laying flat on the bench,
+        start with your arms at your sides at chest level with your elbows slightly bent and pointing out.
+        Lift your arms above your chest with the weights while exhaling then lower the arms to the starting position while inhaling.
+        This can be done with the bench inclined to 30 degrees.</string>
+
+    <string name="push_up"> Start with all fours on the ground and position your hands slightly wider from your shoulders.
+        Keep elbows slightly bent and extend your legs back so you are balanced on your hands and toes with your feet being hip-width apart.
+        Once positioned, lower yourself until your chest touches the ground, then push yourself up with your hands. </string>
+
+    <string name="dips"> Grab parallel bars and hoist yourself up.
+        Bend knees to keep stable and keep head straight by looking forward.
+        Keep elbows locked in the side and lower yourself until your triceps are parallel to the floor.
+        Push yourself back up to the starting position. </string>
+
+    <string name="pullover"> Lying flat on the bench.
+        Put both hands on one end of the dumbbell with the rest of the weight hanging vertically under your hands.
+        Engage glutes and core and lift dumbbell directly above your chest.
+        Keep arms straight as you lower the weight horizontally over your head.
+        Reverse the movement to bring the weight back up overhead.
+        Ensure that your pecs are flexing during the process. </string>
+
+
+</resources>
