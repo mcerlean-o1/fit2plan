@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="activity_level_array">
+        <item> 1 - Sedentary </item>
+        <item> 2 - Lightly active </item>
+        <item> 3 - Moderately active </item>
+        <item> 4 - Highly active </item>
+        <item> 5 - Extremely active </item>
+    </string-array>
+</resources>

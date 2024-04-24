@@ -72,7 +72,7 @@
                     app:layout_constraintVertical_bias="0.037" />
 
                 <ImageButton
-                    android:id="@+id/view_image"
+                    android:id="@+id/addImage"
                     android:layout_width="49dp"
                     android:layout_height="37dp"
                     android:layout_marginStart="5dp"
@@ -80,7 +80,6 @@
                     android:layout_marginEnd="12dp"
                     android:background="@drawable/camera"
                     android:clickable="true"
-                    android:contentDescription="@string/edit"
                     android:focusable="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

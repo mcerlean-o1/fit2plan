@@ -16,7 +16,7 @@ import java.util.List;
 
 public class InteractiveBody extends AppCompatActivity {
 
-    Button chestBtn;
+    Button chestBtn, coreBtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -24,6 +24,7 @@ public class InteractiveBody extends AppCompatActivity {
         setContentView(R.layout.human_body);
 
         chestBtn = findViewById(R.id.button_chest);
+        coreBtn = findViewById(R.id.button_core);
     }
 
     public void OnChestClick(View v) {
@@ -34,6 +35,18 @@ public class InteractiveBody extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         displayChestWorkouts(recyclerView);
 
+
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.show();
+    }
+
+    public void OnCoreClick(View v) {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.core_workouts);
+
+        RecyclerView recyclerView = dialog.findViewById(R.id.core_recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        displayCoreWorkouts(recyclerView);
 
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.show();
@@ -71,8 +84,42 @@ public class InteractiveBody extends AppCompatActivity {
                 .setWorkoutDesc(pullover)
                 .build());
 
+        recyclerView.setAdapter(new WorkoutBodyAdapter(workoutBodyList));
+
+    }
+
+    public void displayCoreWorkouts(RecyclerView recyclerView) {
+        List<WorkoutBody> workoutBodyList = new ArrayList<>();
+
+        String sit_up = getResources().getString(R.string.sit_up);
+        String burpee = getResources().getString(R.string.burpee);
+        String plank = getResources().getString(R.string.plank);
+        String crunches = getResources().getString(R.string.crunches);
+        String hollow_body_hold = getResources().getString(R.string.hollow_body_hold);
+
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Sit Ups")
+                .setWorkoutDesc(sit_up)
+                .build());
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Burpee")
+                .setWorkoutDesc(burpee)
+                .build());
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Plank")
+                .setWorkoutDesc(plank)
+                .build());
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Crunches")
+                .setWorkoutDesc(crunches)
+                .build());
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Hollow Body Hold")
+                .setWorkoutDesc(hollow_body_hold)
+                .build());
 
         recyclerView.setAdapter(new WorkoutBodyAdapter(workoutBodyList));
+
 
     }
 }

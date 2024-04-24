@@ -19,25 +19,32 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodHandler> {
     Context context;
     ItemClicked itemClicked;
     ViewGroup parent;
-    public FoodAdapter(ArrayList<Food> arrayList, Context context, ItemClicked itemClicked) {
+    OnPhotoClickListener photoClickListener;
+    public FoodAdapter(ArrayList<Food> arrayList, Context context, ItemClicked itemClicked, OnPhotoClickListener photoClickListener) {
         foods = arrayList;
         this.context = context;
         this.itemClicked = itemClicked;
+        this.photoClickListener = photoClickListener;
     }
     @NonNull
     @Override
     public FoodHandler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.food_holder,parent,false);
-        this.parent = parent;
 
         return new FoodHandler(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull FoodHandler holder, int position) {
-        //holder.date.setText(foods.get(position).getDate());
-        holder.mealType.setText(foods.get(position).getMealType());
-        holder.mealDescription.setText(foods.get(position).getDescription());
+        Food food = foods.get(position);
+        holder.mealType.setText(food.getMealType());
+        holder.mealDescription.setText(food.getDescription());
+
+        holder.imageBtn.setOnClickListener(v -> {
+            if (photoClickListener != null) {
+                photoClickListener.onTakePhoto(food.getId());
+            }
+        });
 
     }
 
@@ -58,7 +65,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodHandler> {
         TextView mealType;
         TextView mealDescription;
 
-        ImageButton editButton;
+        ImageButton editButton, imageBtn;
 
 
         public FoodHandler(@NonNull View itemView) {
@@ -67,27 +74,31 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodHandler> {
             date = itemView.findViewById(R.id.txt_date);
             mealType = itemView.findViewById(R.id.title_meal);
             mealDescription = itemView.findViewById(R.id.meal_description);
+
+            imageBtn = itemView.findViewById(R.id.addImage);
             editButton = itemView.findViewById(R.id.edit_button);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mealDescription.getMaxWidth() == 1) {
-                        mealDescription.setMaxLines(Integer.MAX_VALUE);
-                    } else {
-                        mealDescription.setMaxLines(1);
-                    }
-                    TransitionManager.beginDelayedTransition(parent);
+            itemView.setOnClickListener(v -> {
+                if (mealDescription.getMaxWidth() == 1) {
+                    mealDescription.setMaxLines(Integer.MAX_VALUE);
+                } if (mealType.getMaxWidth() == 1) {
+                    mealType.setMaxLines(Integer.MAX_VALUE);
+                } if (date.getMaxLines() == 1) {
+                    date.setMaxLines(Integer.MAX_VALUE);
+                } else {
+                    mealDescription.setMaxLines(1);
+                    mealType.setMaxLines(1);
                 }
+                TransitionManager.beginDelayedTransition(parent);
             });
 
-            editButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    itemClicked.onClick(getAdapterPosition(),itemView);
-                }
-            });
+            editButton.setOnClickListener(v -> itemClicked.onClick(getAdapterPosition(),itemView));
+
         }
+    }
+
+    public interface OnPhotoClickListener {
+        void onTakePhoto(int mealId);
     }
 
     interface ItemClicked {

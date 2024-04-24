@@ -35,7 +35,7 @@ public class WorkoutBodyAdapter extends RecyclerView.Adapter<WorkoutBodyAdapter.
     @Override
     public WorkoutBodyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.chest_view, parent, false);
+                .inflate(R.layout.workout_body_view, parent, false);
         return new ViewHolder(view);
     }
 

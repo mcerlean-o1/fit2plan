@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@drawable/nav_background_gradient"
+    android:layout_width="match_parent"
+    android:gravity="top"
+    android:layout_height="100dp"
+    android:padding="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/proUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Username"
+            android:textColor="@color/black"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.086"
+            app:layout_constraintStart_toEndOf="@+id/profilePicCard"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/profilePicCard"
+            android:layout_width="65dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:background="@drawable/profile_icon"
+            android:paddingTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardCornerRadius="50dp">
+            <ImageView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:id="@+id/profilePic"
+                android:scaleType="centerCrop"/>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!--    <FrameLayout-->
+<!--        android:paddingTop="20dp"-->
+<!--        android:id="@+id/foodDiaryFrameLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:focusable="true"-->
+<!--        android:clickable="true"-->
+<!--        android:foreground="?attr/selectableItemBackground">-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:contentDescription="Food Diary"-->
+<!--            android:src="@drawable/diary" />-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Food Diary"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="22dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:paddingTop="45dp" />-->
+
+<!--    </FrameLayout>-->
+
+<!--    <FrameLayout-->
+<!--        android:paddingTop="20dp"-->
+<!--        android:id="@+id/workoutDiaryFrameLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:focusable="true"-->
+<!--        android:clickable="true"-->
+<!--        android:foreground="?attr/selectableItemBackground">-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:contentDescription="Workout Diary"-->
+<!--            android:src="@drawable/workout" />-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Workout Diary"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="22dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:paddingTop="45dp" />-->
+
+<!--    </FrameLayout>-->
+
+<!--    <FrameLayout-->
+<!--        android:paddingTop="20dp"-->
+<!--        android:id="@+id/nutritionCalculatorFrameLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:focusable="true"-->
+<!--        android:clickable="true"-->
+<!--        android:foreground="?attr/selectableItemBackground">-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:contentDescription="Nutrition Calculator"-->
+<!--            android:src="@drawable/nutrition" />-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Nutrition Calculator"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="22dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:paddingTop="45dp" />-->
+
+<!--    </FrameLayout>-->
+
+<!--    <FrameLayout-->
+<!--        android:paddingTop="20dp"-->
+<!--        android:id="@+id/chatRoomFrameLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:focusable="true"-->
+<!--        android:clickable="true"-->
+<!--        android:foreground="?attr/selectableItemBackground">-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:contentDescription="Chat Room"-->
+<!--            android:src="@drawable/chat" />-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="ChatRoom"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="22dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:paddingTop="45dp" />-->
+
+<!--    </FrameLayout>-->
+
+
+
+
+</LinearLayout>

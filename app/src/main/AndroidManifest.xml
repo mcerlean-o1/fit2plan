@@ -17,35 +17,21 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:logo="@drawable/fit_two_plan"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/fit2plan_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.Fit2Plan"
         tools:targetApi="31">
         <activity
-            android:name=".Login"
-            android:exported="true">
-
+            android:name=".Profile"
+            android:exported="false" />
+        <activity
+            android:name=".Friends"
+            android:exported="true"
+            android:label="@string/title_activity_friends"
+            android:theme="@style/Theme.Fit2Plan">
         </activity>
         <activity
             android:name=".SignUp"
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".EditWorkout"
-            android:exported="false" />
-        <activity
-            android:name=".WorkoutDiary"
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".InteractiveBody"
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,20 +40,38 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".EditWorkout"
+            android:exported="false" />
+        <activity
+            android:name=".WorkoutDiary"
+            android:exported="true" />
+        <activity
+            android:name=".InteractiveBody"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".ChatRoom"
+            android:exported="true">
+        </activity>
+        <activity
             android:name=".FoodDiary"
+            android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
             android:name=".EditFood"
             android:exported="false" />
 
         <provider
-            android:authorities="${applicationId}.fileprovider"
             android:name="androidx.core.content.FileProvider"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:authorities="${applicationId}.file-provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
 

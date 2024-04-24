@@ -28,5 +28,33 @@
         Reverse the movement to bring the weight back up overhead.
         Ensure that your pecs are flexing during the process. </string>
 
+    <string name="sit_up"> Lay flat on the ground and bend the legs at a 90 degree angle.
+    Keep feet flat on the ground for extra stability. Engage core and lift your torso up to the legs.
+    Lay back onto the ground at a slower pace.
+    Keep hands behind head for increased intensity.</string>
+    
+    <string name="burpee"> Start with a deep squat and hands on the ground with straightened arms.
+        Kick both feet back to be on your hands and toes in a push up position.
+        Lower until your chest touches the ground.
+        Push back up until the arms are fully extended.
+        Jump your legs back into the starting position.
+        Jump vertically using your legs.
+        Repeat the from the starting position.</string>
+
+    <string name="plank"> Start with the elbows and toes on the ground.
+        Ensure that the is aligned with the chest.
+        Maintain a straight posture on the back.
+        Hold this position for as long as you wish.</string>
+    
+    <string name="crunches"> Similar to the sit up. Lay flat on the ground and bend the legs at a 90 degree angle while keeping the feet flat on the ground.
+        Instead of raising the whole torso, raise the upper torso while the core is engaged.
+        Raise further until the abdomen is squeezed. 
+        Once copmleted, lower the back to the ground and repeat the process. Keep hands behind back.
+    </string>
+    
+    <string name="hollow_body_hold"> Lay on the ground with the upper back slightly off the ground.
+    Raise arms vertically above the head to improve stability and raise the legs off the ground to activate the core.
+    Hold this position for as long as needed.</string>
+
 
 </resources>
