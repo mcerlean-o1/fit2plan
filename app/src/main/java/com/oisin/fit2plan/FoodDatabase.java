@@ -6,11 +6,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class FoodDatabase extends SQLiteOpenHelper {
 
-    public static final String Column_ID = "id";
+    public static final String Column_Id = "id";
     public static final String Column_Date = "date";
     public static final String Column_Meal_Type = "mealType";
     public static final String Column_Meal_Description = "mealDescription";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 6;
 
     private static final String DATABASE_NAME = "FoodDatabase";
 

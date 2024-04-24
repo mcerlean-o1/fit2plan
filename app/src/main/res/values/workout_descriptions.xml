@@ -28,5 +28,97 @@
         Reverse the movement to bring the weight back up overhead.
         Ensure that your pecs are flexing during the process. </string>
 
+    <string name="sit_up"> Lay flat on the ground and bend the legs at a 90 degree angle.
+    Keep feet flat on the ground for extra stability. Engage core and lift your torso up to the legs.
+    Lay back onto the ground at a slower pace.
+    Keep hands behind head for increased intensity.</string>
+    
+    <string name="burpee"> Start with a deep squat and hands on the ground with straightened arms.
+        Kick both feet back to be on your hands and toes in a push up position.
+        Lower until your chest touches the ground.
+        Push back up until the arms are fully extended.
+        Jump your legs back into the starting position.
+        Jump vertically using your legs.
+        Repeat the from the starting position.</string>
+
+    <string name="plank"> Start with the elbows and toes on the ground.
+        Ensure that the is aligned with the chest.
+        Maintain a straight posture on the back.
+        Hold this position for as long as you wish.</string>
+    
+    <string name="crunches"> Similar to the sit up. Lay flat on the ground and bend the legs at a 90 degree angle while keeping the feet flat on the ground.
+        Instead of raising the whole torso, raise the upper torso while the core is engaged.
+        Raise further until the abdomen is squeezed. 
+        Once copmleted, lower the back to the ground and repeat the process. Keep hands behind back.
+    </string>
+    
+    <string name="hollow_body_hold"> Lay on the ground with the upper back slightly off the ground.
+    Raise arms vertically above the head to improve stability and raise the legs off the ground to activate the core.
+    Hold this position for as long as needed.</string>
+    
+    <string name="barbell_squats"> Stand with your feet shoulder-width apart and the barbell resting on your upper traps.
+    Keep chest up and back straight.
+    Slowly lower your body by bending your knees and pushing your hips back.
+    Lower until you are in a deep squat position. 
+    Push through your heels to return to the standing position. </string>
+    
+    <string name="lunges"> Stand tall with your feet hip-width apart.
+    Optionally, hold a pair of dumbbells at your sides for added intensity.
+    Take a large step forward with one leg, bending both knees to lower your body until your front thigh is parallel to the ground and your rear knee is just above the floor.
+    Push through your front heel to return to the starting position.</string>
+    
+    <string name="step_ups"> Find a sturdy platform that is around knee height.
+    Optionally hold dumbbells, either in each hand or one in a goblet position.
+    Step up onto the platform facing it and drive the heel on the platform to lift the other foot up.
+    Lower yourself under control until you have stepped back down with your other foot.</string>
+
+    <string name="pistol_squats"> Stand with your feet hip-width apart and extend one leg in front of you.
+    lower the body down to squat position with one foot and drive through your heel to lift your body up.
+    Ensure your back is straight and chest is up during the squat, ideally maintain balance too.
+    Optionally, if the movement is too intense, hold onto something to keep the body stable and lighter. </string>
+
+    <string name="walking_lunges"> Similar to lunges, lunge forward with one foot and lower until the front thigh is parallel to the ground.
+    Once in the lunging position, push the heel in front forward to bring the other leg forward.
+    Alternate both legs with each step. </string>
+    
+    <string name="dumbbell_lateral_raises">Stand tall and straight with both dumbbells on each hand by your sides, palms facing your body.
+    Keep arms slightly bent and raise both dumbbells to your sides until they are parallel to the ground.
+    Briefly pause at the top and slowly lower the dumbbells back down to the thighs.</string>
+
+    <string name="dumbbell_shoulder_press"> Sit on a bench with back support, hold a dumbbell in each hand and position them so that they are level with your shoulders.
+    Press dumbbells overhead until your arms are fully extended without locking the elbows.
+    Slowly lower the arms back down to shoulder height. </string>
+
+    <string name="dumbbell_front_raises">  Stand tall with dumbbells on each hand with the palms facing your thighs.
+    Lift dumbbells directly in front of you until the arms are parallel from the ground.
+    Lower it slowly back to the starting position.</string>
+    
+    <string name="dumbbell_rear_delt_flyes"> Bend forward at the hips with a dumbbell in each hand, palms facing each other.
+    Slightly bend elbows as the dumbbells are raised. Raise out to the sides until both arms are parallel to the ground.
+    Squeeze your shoulders together at the top of the movement, the slowly lower the dumbbells back down. </string>
+
+    <string name="arnold_press"> Sitting on the bench with back support, hold a dumbbell in each hand at shoulder width with your palms facing the shoulders.
+    Press the dumbbells overhead while rotating your palms to face forward.
+    Once arms are fully extended, rotate your palms back to the shoulders while lowering the dumbbells slowly.</string>
+
+    <string name="dumbbell_bicep_curls"> Stand tall with dumbbells on each hand, fully extend arms by your sides at a slight angle.
+    Keep palms facing forward with the elbows and elbows close to the body, curl the dumbbells upward toward your shoulders while inhaling.
+    Squeeze your bicep and fore arms at the top. Lower the dumbbells again to the starting position slowly while exhaling.</string>
+
+    <string name="hammer_curl"> Stand tall with a dumbbell on each hand.
+    Keep arms fully extended by your sides with the palms facing each other.
+    Keep elbows close to the body, inhale as you curl the dumbbells upward toward your shoulders. Squeeze your biceps and forearms at the top.
+    Slowly lower arms to the side again while exhaling.</string>
+
+    <string name="alt_db_curl"> Similar to the dumbbell bicep curl, you curl to the shoulders and lower the dumbbell again.
+    Instead of using both arms to curl, keep one stationary while one arm is curling. Once one arm has curled, use the other arm to curl.</string>
+
+    <string name="preacher_curl"> Incline the bench at a slight angle, chest facing the bench while sitting.
+    Position fully extended arms facing the ground and curl the dumbbells upward until the palms face the shoulders.
+    Squeeze biceps and forearms then slowly lower the dumbbells to the starting position. Ensure elbows are not moving.</string>
+
+    <string name="incline_db_curl"> Set at an adjustable bench to a 45-degree angle. Sit on the bench with dumbbells on each hand, arms fully extended towards the floor, palms facing forward.
+    Keep upper arms stationary, inhale as you curl the dumbbells upward towards the shoulders, exhale while lowering the dumbbells back down to the starting position.</string>
+
 
 </resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/navHome"
+            android:title="Home"
+            android:icon="@drawable/home"/>
+
+        <item
+            android:id="@+id/foodDiaryPage"
+            android:icon="@drawable/diary"
+            android:title="Food Diary"/>
+        <item
+            android:id="@+id/workoutDiaryPage"
+            android:icon="@drawable/workout"
+            android:title="Workout Diary"/>
+        <item
+            android:id="@+id/nutritionCalculatorPage"
+            android:icon="@drawable/nutrition"
+            android:title="Nutrition Calculator"/>
+        <item
+            android:id="@+id/chatRoomPage"
+            android:icon="@drawable/chat"
+            android:title="Chat Room"/>
+    </group>
+
+</menu>

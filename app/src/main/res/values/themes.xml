@@ -1,17 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Fit2Plan" parent="Theme.AppCompat.DayNight.DarkActionBar">
-        <!-- Customize your light theme here. -->
-        <item name="colorPrimary">@color/black</item>
+    <style name="Base.Theme.Fit2Plan" parent="Theme.AppCompat.Light.NoActionBar"/>
 
-        <item name="iconTint">@color/red</item>
-
-
-
-
-
-
-    </style>
     <style name="CounterViewStyle">
         <item name="android:progressDrawable">@drawable/progress_bar</item>
         <item name="android:indeterminateOnly">false</item>

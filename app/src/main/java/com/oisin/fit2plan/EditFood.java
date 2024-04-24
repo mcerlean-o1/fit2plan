@@ -20,7 +20,6 @@ public class EditFood extends AppCompatActivity {
     EditText edtDate, edtMealDescription;
     Spinner edtMealType;
     LinearLayout linearLayout;
-    String dateCurrent;
 
 
 
@@ -36,14 +35,34 @@ public class EditFood extends AppCompatActivity {
         edtMealType = findViewById(R.id.edt_edit_mealType);
         edtMealDescription = findViewById(R.id.edt_edit_meal_description);
 
-        dateCurrent = getIntent().getStringExtra("date");
+        String dateCurrent = intent.getStringExtra("date");
+        String currentMealType = intent.getStringExtra("mealType");
+        String currentMealDescription = intent.getStringExtra("mealDescription");
+        int currentId = intent.getIntExtra("id", -1);
 
-        edtDate.setText(dateCurrent);
+        edtDate.setText(dateCurrent != null ? dateCurrent : "");
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(EditFood.this,
                 R.array.meal_types_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         edtMealType.setAdapter(adapter);
+
+        edtMealDescription.setText(currentMealDescription != null ? currentMealDescription : "");
+
+        if (currentMealType != null && currentMealDescription != null && currentId != -1) {
+            Food food = new Food(currentId, dateCurrent, currentMealType, currentMealDescription);
+            food.setId(currentId);
+            int spinnerPosition = adapter.getPosition(currentMealType);
+            edtMealType.setSelection(spinnerPosition);
+        } else {
+            Toast.makeText(this, "Food data needs completed", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
+
+
+
+
 
         edtCancel = findViewById(R.id.cancel_button);
         edtSave = findViewById(R.id.save_button);
@@ -59,12 +78,13 @@ public class EditFood extends AppCompatActivity {
         edtSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int id = currentId;
                 String date = edtDate.getText().toString();
                 String mealType = edtMealType.getSelectedItem().toString();
                 String mealDescription = edtMealDescription.getText().toString();
 
-                Food food = new Food(date, mealType, mealDescription);
-                food.setId(intent.getIntExtra("id", 1));
+                Food food = new Food(id, date, mealType, mealDescription);
+                food.setId(intent.getIntExtra("id", -1));
 
                 if (new FoodHandler(EditFood.this).update(food)) {
                     Toast.makeText(EditFood.this, "Changes saved", Toast.LENGTH_SHORT).show();
@@ -78,12 +98,11 @@ public class EditFood extends AppCompatActivity {
         });
 
 
-        String currentMealType = getIntent().getStringExtra("mealType");
-        int spinnerPosition = adapter.getPosition(currentMealType);
 
-        edtDate.setText(intent.getStringExtra("date"));
-        edtMealType.setSelection(spinnerPosition);
-        edtMealDescription.setText(intent.getStringExtra("mealDescription"));
+
+
+
+
 
     }
 

@@ -5,12 +5,11 @@ import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 
 import java.util.ArrayList;
 
@@ -36,7 +35,6 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutH
 
     @Override
     public void onBindViewHolder(@NonNull WorkoutHandler holder, int position) {
-        holder.date.setText(workouts.get(position).getDates());
         holder.a1.setText(workouts.get(position).getA1());
         holder.a2.setText(workouts.get(position).getA2());
         holder.b1.setText(workouts.get(position).getB1());
@@ -47,6 +45,12 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutH
 
     }
 
+    public void updateWorkouts(ArrayList<Workout> newWorkouts) {
+        workouts.clear();
+        this.workouts.addAll(newWorkouts);
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public int getItemCount() {
@@ -55,7 +59,6 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutH
 
     class WorkoutHandler extends RecyclerView.ViewHolder {
 
-        TextView date;
         TextView a1;
         TextView a2;
         TextView b1;
@@ -63,29 +66,25 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutH
         TextView c1;
         TextView c2;
         TextView multiNotes;
-        Button editBtn;
+        ImageButton editBtn;
 
 
         public WorkoutHandler(@NonNull View itemView) {
             super(itemView);
 
-            date = itemView.findViewById(R.id.editTextDate);
-            a1 = itemView.findViewById(R.id.edt_a1);
-            a2 = itemView.findViewById(R.id.edt_a2);
-            b1 = itemView.findViewById(R.id.edt_b1);
-            b2 = itemView.findViewById(R.id.edt_b2);
-            c1 = itemView.findViewById(R.id.edt_c1);
-            c2 = itemView.findViewById(R.id.edt_c2);
-            multiNotes = itemView.findViewById(R.id.edt_multiNotes);
+            a1 = itemView.findViewById(R.id.edtTxt_a1);
+            a2 = itemView.findViewById(R.id.edtTxt_a2);
+            b1 = itemView.findViewById(R.id.edtTxt_b1);
+            b2 = itemView.findViewById(R.id.edtTxt_b2);
+            c1 = itemView.findViewById(R.id.edtTxt_c1);
+            c2 = itemView.findViewById(R.id.edtTxt_c2);
+            multiNotes = itemView.findViewById(R.id.edtTxt_multiNotes);
 
             editBtn = itemView.findViewById(R.id.btnEdit);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (date.getMaxWidth() == 1) {
-                        date.setMaxLines(Integer.MAX_VALUE);
-                    }
                     if (a1.getMaxWidth() == 1) {
                         a1.setMaxLines(Integer.MAX_VALUE);
                     }
@@ -107,7 +106,6 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutH
                     if (multiNotes.getMaxWidth() == 1) {
                         multiNotes.setMaxLines(Integer.MAX_VALUE);
                     }else {
-                        date.setMaxLines(1);
                         a1.setMaxLines(1);
                         a2.setMaxLines(1);
                         b1.setMaxLines(1);

@@ -6,7 +6,8 @@ public class Photo {
     private int mealID;
     private String photoPath;
 
-    public Photo(int mealID, String photoPath) {
+    public Photo(int photoID, int mealID, String photoPath) {
+        this.photoID = photoID;
         this.mealID = mealID;
         this.photoPath = photoPath;
     }

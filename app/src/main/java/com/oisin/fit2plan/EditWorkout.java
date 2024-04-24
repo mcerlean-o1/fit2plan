@@ -34,6 +34,19 @@ public class EditWorkout extends AppCompatActivity {
         edtC2 = findViewById(R.id.edt_edit_c2);
         edtMultiNotes = findViewById(R.id.edt_edit_multiNotes);
 
+
+        int currentId = intent.getIntExtra("id", -1);
+        String dateCurrent = intent.getStringExtra("dates");
+        edtA1.setText(intent.getStringExtra("a1"));
+        edtA2.setText(intent.getStringExtra("a2"));
+        edtB1.setText(intent.getStringExtra("b1"));
+        edtB2.setText(intent.getStringExtra("b2"));
+        edtC1.setText(intent.getStringExtra("c1"));
+        edtC2.setText(intent.getStringExtra("c2"));
+        edtMultiNotes.setText(intent.getStringExtra("multiNotes"));
+
+        edtDate.setText(dateCurrent !=null ? dateCurrent : "");
+
         edtCancel = findViewById(R.id.cancel_button);
         edtSave = findViewById(R.id.save_button);
 
@@ -51,7 +64,7 @@ public class EditWorkout extends AppCompatActivity {
         edtSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Workout workout = new Workout(edtDate.getText().toString(),
+                Workout workout = new Workout(currentId, edtDate.getText().toString(),
                         edtA1.getText().toString(),
                         edtA2.getText().toString(),
                         edtB1.getText().toString(),
@@ -59,7 +72,7 @@ public class EditWorkout extends AppCompatActivity {
                         edtC1.getText().toString(),
                         edtC2.getText().toString(),
                         edtMultiNotes.getText().toString());
-                workout.setId(intent.getIntExtra("id",1));
+                workout.setId(intent.getIntExtra("id",-1));
                 if (new WorkoutHandler(EditWorkout.this).update(workout)){
                     Toast.makeText(EditWorkout.this, "Changes saved", Toast.LENGTH_SHORT).show();
                 } else {
@@ -71,14 +84,7 @@ public class EditWorkout extends AppCompatActivity {
         });
 
 
-        edtDate.setText(intent.getStringExtra("date"));
-        edtA1.setText(intent.getStringExtra("a1"));
-        edtA2.setText(intent.getStringExtra("a2"));
-        edtB1.setText(intent.getStringExtra("b1"));
-        edtB2.setText(intent.getStringExtra("b2"));
-        edtC1.setText(intent.getStringExtra("c1"));
-        edtC2.setText(intent.getStringExtra("c2"));
-        edtMultiNotes.setText(intent.getStringExtra("multiNotes"));
+
 
     }
 

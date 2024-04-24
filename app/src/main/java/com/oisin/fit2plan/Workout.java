@@ -1,5 +1,7 @@
 package com.oisin.fit2plan;
 
+import android.database.Cursor;
+
 public class Workout {
 
     private int id;
@@ -12,8 +14,9 @@ public class Workout {
     private String C2;
     private String multiNotes;
 
-    public Workout(String dates, String a1, String a2, String b1, String b2, String c1, String c2, String multiNotes) {
+    public Workout(int id, String dates, String a1, String a2, String b1, String b2, String c1, String c2, String multiNotes) {
 
+        this.id = id;
         this.Dates = dates;
         this.A1 = a1;
         this.A2 = a2;
@@ -22,6 +25,26 @@ public class Workout {
         this.C1 = c1;
         this.C2 = c2;
         this.multiNotes = multiNotes;
+    }
+
+    public static Workout fromCursor(Cursor cursor) {
+        if (cursor.moveToFirst()) {
+            int id = cursor.getInt(cursor.getColumnIndex("id"));
+            String date = cursor.getString(cursor.getColumnIndex("dates"));
+            String a1 = cursor.getString(cursor.getColumnIndex("a1"));
+            String a2 = cursor.getString(cursor.getColumnIndex("a2"));
+            String b1 = cursor.getString(cursor.getColumnIndex("b1"));
+            String b2 = cursor.getString(cursor.getColumnIndex("b2"));
+            String c1 = cursor.getString(cursor.getColumnIndex("c1"));
+            String c2 = cursor.getString(cursor.getColumnIndex("c2"));
+            String multiNotes = cursor.getString(cursor.getColumnIndex("multiNotes"));
+
+
+            Workout workout = new Workout(id, date, a1, a2, b1, b2, c1, c2, multiNotes);
+            workout.setId(id);
+            return workout;
+        }
+        return null;
     }
 
     public int getId() {

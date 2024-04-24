@@ -8,4 +8,5 @@
     <color name="dark_blue">#031D4F</color>
     <color name="backgroundColor">#2F2828</color>
     <color name="cardColor">#7C3333</color>
+    <color name="dark_gray">#333333</color>
 </resources>

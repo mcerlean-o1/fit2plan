@@ -12,19 +12,9 @@
         android:layout_height="50dp"
         android:hint="A1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_date"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_editor_absoluteX="0dp" />
 
-
-    <EditText
-        android:id="@+id/edt_date"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint="Note Date"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edt_a2"

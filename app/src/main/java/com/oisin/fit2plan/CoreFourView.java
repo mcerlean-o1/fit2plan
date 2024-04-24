@@ -11,30 +11,26 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class CoreFourView extends FrameLayout {
 
-    ImageButton goodnessIn, hydration, movement, sleep;
+    ImageButton goodnessIn, hydration, movement, sleep,
+            goodnessInToggled, hydrationToggled, movementToggled, sleepToggled;
     ProgressBar progressBar;
     TextView progressTxt;
 
 
-    private final boolean[] buttonClicked = {false, true};
+    private final boolean[] isToggled = new boolean[4];
     private int currentProgress = 0;
 
-
-
-    //This constructor needs context
     public CoreFourView(@NonNull Context context) {
         super(context);
         init();
     }
 
-    //This sets the attributes
     public CoreFourView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init();
@@ -42,6 +38,7 @@ public class CoreFourView extends FrameLayout {
 
         int progress = typedArray.getInteger(R.styleable.CoreFourView_progressAndText,0);
         setProgressAndText(String.valueOf(progress));
+        typedArray.recycle();
     }
 
     public CoreFourView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -56,64 +53,20 @@ public class CoreFourView extends FrameLayout {
         hydration = findViewById(R.id.hydration);
         movement = findViewById(R.id.fitness);
         sleep = findViewById(R.id.sleep);
+        goodnessInToggled = findViewById(R.id.goodness_in_toggled);
+        hydrationToggled = findViewById(R.id.hydration_toggled);
+        movementToggled = findViewById(R.id.fitness_toggled);
+        sleepToggled = findViewById(R.id.sleep_toggled);
+
 
         progressBar = findViewById(R.id.core4Bar);
         progressTxt = findViewById(R.id.core4Text);
 
 
-        goodnessIn.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "Goodness In Checked", Toast.LENGTH_SHORT).show();
-                toggleProgress(25);
-                if (buttonClicked[0] && toggleProgress(currentProgress) == 25 ) {
-                    toggleProgress(0);
-                }
-
-            }
-        });
-
-        hydration.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "Hydration Checked", Toast.LENGTH_SHORT).show();
-                toggleProgress(25);
-
-            }
-        });
-
-        movement.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "Movement Checked", Toast.LENGTH_SHORT).show();
-                if (buttonClicked[1]) {
-                    toggleProgress(25);
-                } else {
-                    toggleProgress(-25);
-                }
-
-            }
-        });
-
-        sleep.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean buttonClickTrue = buttonClicked[1];
-                boolean buttonClickFalse = buttonClicked[0];
-                Toast.makeText(getContext(), "Sleep Checked", Toast.LENGTH_SHORT).show();
-                if (buttonClickTrue) {
-                    toggleProgress(25);
-                } else if (buttonClickFalse){
-                    toggleProgress(-25);
-                }
-
-            }
-        });
-
-//        goodnessIn.setOnClickListener(v -> toggleProgress(25));
-//        hydration.setOnClickListener(v -> toggleProgress(25));
-//        movement.setOnClickListener(v -> toggleProgress(25));
-//        sleep.setOnClickListener(v -> toggleProgress(25));
+        setUpButtonListeners(goodnessIn, goodnessInToggled, 0);
+        setUpButtonListeners(hydration, hydrationToggled, 1);
+        setUpButtonListeners(movement, movementToggled, 2);
+        setUpButtonListeners(sleep, sleepToggled, 3);
     }
 
     private int toggleProgress(int progress) {
@@ -148,5 +101,30 @@ public class CoreFourView extends FrameLayout {
     public void setProgressAndText(String progress) {
         setProgressTxt(progress);
         setProgressBar(Integer.parseInt(progress));
+    }
+
+    private void setUpButtonListeners(ImageButton button, ImageButton buttonClicked, int index) {
+
+        button.setOnClickListener(v -> {
+            toggleProgress(25);
+            updateButtonToggled(button, buttonClicked, index);
+        });
+
+        buttonClicked.setOnClickListener(v -> {
+            toggleProgress(-25);
+            updateButtonToggled(button, buttonClicked, index);
+        });
+    }
+
+    private void updateButtonToggled(ImageButton button, ImageButton buttonToggled, int index) {
+        if (isToggled[index]) {
+            buttonToggled.setVisibility(GONE);
+            button.setVisibility(VISIBLE);
+        } else {
+            button.setVisibility(GONE);
+            buttonToggled.setVisibility(VISIBLE);
+        }
+        isToggled[index] = !isToggled[index];
+
     }
 }

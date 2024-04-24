@@ -8,17 +8,27 @@ public class Food {
     private String date;
     private String mealType;
     private String description;
-    public Cursor cursor;
 
 
-    public Food(String date, String mealType, String description) {
+    public Food(int id, String date, String mealType, String description) {
+        this.id = id;
         this.date = date;
         this.mealType = mealType;
         this.description = description;
     }
 
-    public Food(Cursor cursor) {
-        this.cursor = cursor;
+    public static Food fromCursor(Cursor cursor) {
+        if (cursor.moveToFirst()) {
+            String date = cursor.getString(cursor.getColumnIndex("date"));
+            String mealType = cursor.getString(cursor.getColumnIndex("mealType"));
+            String mealDesc = cursor.getString(cursor.getColumnIndex("mealDescription"));
+            int id = cursor.getInt(cursor.getColumnIndex("id"));
+
+            Food food = new Food(id, date, mealType, mealDesc);
+            food.setId(id);
+            return food;
+        }
+        return null;
     }
 
 

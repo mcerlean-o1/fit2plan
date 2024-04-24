@@ -20,7 +20,7 @@
                 android:layout_height="70dp"
                 android:layout_marginTop="40dp"
                 android:text="Chest Workouts"
-                android:textColor="@color/white"
+                android:textColor="@color/title_text"
                 android:textSize="40dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -33,10 +33,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/chest_title" />
+                app:layout_constraintTop_toBottomOf="@+id/chest_title"
+                app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

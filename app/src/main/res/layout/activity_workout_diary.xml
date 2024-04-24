@@ -8,55 +8,134 @@
     tools:context=".WorkoutDiary">
 
     <TextView
-        android:layout_width="238dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="160dp"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
         android:text="Workout Diary"
-        android:textColor="@color/red"
+        android:textColor="@color/title_text"
         android:textSize="32dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler"
-            android:layout_width="385dp"
-            android:layout_height="461dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/workout_add_button"
-        android:layout_width="154dp"
-        android:layout_height="59dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/log_button"
-        android:elevation="9dp"
-        android:text="Add Workout"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.108"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
+    <ImageButton
         android:id="@+id/workout_body_button"
-        android:layout_width="154dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="39dp"
-        android:layout_marginBottom="4dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/log_button"
         android:elevation="9dp"
-        android:text="Workout Body"
+        android:src="@drawable/workout"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/recycler"
+        app:layout_constraintEnd_toStartOf="@+id/textView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/day_cycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+    <ImageButton
+        android:id="@+id/workout_add_button"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/log_button"
+        android:elevation="9dp"
+        android:src="@drawable/plus"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/recycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintStart_toEndOf="@+id/textView" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/day_cycler"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/cardColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.859"
-        app:layout_constraintStart_toEndOf="@+id/workout_add_button"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/previous_day_workout"
+                android:layout_width="68dp"
+                android:layout_height="57dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/cardColor"
+                android:text="Previous Day"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <Button
+                android:id="@+id/next_day_workout"
+                android:layout_width="67dp"
+                android:layout_height="56dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/cardColor"
+                android:text="Next Day"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view_left"
+                android:layout_width="1dp"
+                android:layout_height="145dp"
+                android:layout_marginStart="96dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view_right"
+                android:layout_width="1dp"
+                android:layout_height="145dp"
+                android:layout_marginStart="316dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.6" />
+
+            <TextView
+                android:id="@+id/txt_date_workout"
+                android:layout_width="wrap_content"
+                android:layout_height="49dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="48dp"
+                android:inputType="date"
+                android:text="DD/MM/YYYY"
+                android:textColor="@color/title_text"
+                android:textSize="28dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/view_right"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/view_left"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
