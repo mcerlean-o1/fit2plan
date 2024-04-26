@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -395,6 +394,8 @@ public class WorkoutDiary extends AppCompatActivity {
             intent = new Intent(WorkoutDiary.this, WorkoutDiary.class);
         } else if (id == R.id.chatRoomPage) {
             intent = new Intent(WorkoutDiary.this, Friends.class);
+        } else if (id == R.id.nutritionCalculatorPage) {
+            intent = new Intent(WorkoutDiary.this, NutritionCalculator.class);
         }
 
         if (intent != null) {
@@ -403,10 +404,5 @@ public class WorkoutDiary extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
 }
 

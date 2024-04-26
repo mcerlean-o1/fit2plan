@@ -22,14 +22,16 @@
         android:theme="@style/Theme.Fit2Plan"
         tools:targetApi="31">
         <activity
+            android:name=".NutritionCalculator"
+            android:exported="false" />
+        <activity
             android:name=".Profile"
             android:exported="false" />
         <activity
             android:name=".Friends"
             android:exported="true"
             android:label="@string/title_activity_friends"
-            android:theme="@style/Theme.Fit2Plan">
-        </activity>
+            android:theme="@style/Theme.Fit2Plan"></activity>
         <activity
             android:name=".SignUp"
             android:exported="true">
@@ -50,12 +52,10 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"/>
         <activity
             android:name=".ChatRoom"
-            android:exported="true">
-        </activity>
+            android:exported="true"/>
         <activity
             android:name=".FoodDiary"
             android:configChanges="orientation|screenSize"
@@ -63,8 +63,9 @@
         <activity
             android:name=".EditFood"
             android:exported="false" />
-        <activity android:name=".EditProfile"
-            android:exported="false"/>
+        <activity
+            android:name=".EditProfile"
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

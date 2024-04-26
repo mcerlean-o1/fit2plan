@@ -9,6 +9,7 @@
     tools:context=".MainActivity">
 
     <ScrollView
+        android:background="@drawable/background_gradient"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -23,62 +24,19 @@
                 android:layout_width="177dp"
                 android:layout_height="41dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="116dp"
+                android:layout_marginEnd="104dp"
                 android:background="@drawable/fit_two_plan"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/bmrTxtView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="172dp"
-                android:layout_marginBottom="16dp"
-                android:text="BMR: "
-                android:textColor="@color/title_text"
-                android:textSize="24dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/core_four_view"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2"
-                app:layout_constraintVertical_bias="0.115" />
-
-            <TextView
-                android:id="@+id/tdeeTxtView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="16dp"
-                android:text="Recommended Calories Today: "
-                android:textColor="@color/title_text"
-                android:textSize="24dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/core_four_view"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2"
-                app:layout_constraintVertical_bias="0.926" />
-
-            <Button
-                android:id="@+id/calculateBtn"
-                android:layout_width="48dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="68dp"
-                android:onClick="calculateBMRAndTDEE"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.oisin.fit2plan.CoreFourView
                 android:id="@+id/core_four_view"
                 android:layout_width="match_parent"
                 android:layout_height="750dp"
-                android:layout_marginTop="200dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
             </com.oisin.fit2plan.CoreFourView>
 

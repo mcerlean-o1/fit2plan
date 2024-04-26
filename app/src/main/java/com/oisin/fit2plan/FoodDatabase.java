@@ -10,7 +10,7 @@ public class FoodDatabase extends SQLiteOpenHelper {
     public static final String Column_Date = "date";
     public static final String Column_Meal_Type = "mealType";
     public static final String Column_Meal_Description = "mealDescription";
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 7;
 
     private static final String DATABASE_NAME = "FoodDatabase";
 
@@ -28,20 +28,12 @@ public class FoodDatabase extends SQLiteOpenHelper {
                 "mealDescription TEXT)";
         db.execSQL(sqlQuery);
 
-        String sqlQuery1 = "CREATE TABLE Photos ( photoID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "mealID INTEGER," +
-                "PhotoPath TEXT," +
-                "FOREIGN KEY(mealID) REFERENCES Food(id))";
-        db.execSQL(sqlQuery1);
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String sqlQuery = "DROP TABLE IF EXISTS Food";
-        String sqlQuery1 = "DROP TABLE IF EXISTS Photos";
         db.execSQL(sqlQuery);
-        db.execSQL(sqlQuery1);
         onCreate(db);
 
     }
