@@ -1,21 +1,15 @@
 package com.oisin.fit2plan;
 
-import android.Manifest;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.Handler;
-import android.os.Looper;
-import android.provider.MediaStore;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,41 +24,42 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.content.FileProvider;
+import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.io.File;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
-public class FoodDiary extends AppCompatActivity implements FoodAdapter.OnPhotoClickListener{
+public class FoodDiary extends AppCompatActivity {
 
     ImageButton addFood;
-    ImageView imageView;
-    TextView dateText;
+    ImageView profilePicture;
+    TextView dateText, usernameProfile;
     ArrayList<Food> foods;
     RecyclerView recyclerView;
+    GestureDetector gesture;
+    DrawerLayout drawLayout;
+    NavigationView navigationView;
     FoodAdapter foodAdapter;
     FoodHandler foodHandler;
-    Button prevDay, nextDay, backBtn;
-    private Handler handler;
-    private Dialog dialog;
-    private Uri imageUri;
-    private String currentPhotoPath;
-    private long currentMealId = -1;
-
-    private static final int CAMERA_PERMISSIONS_CODE = 1;
+    Button prevDay, nextDay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,36 +68,79 @@ public class FoodDiary extends AppCompatActivity implements FoodAdapter.OnPhotoC
         foodHandler = new FoodHandler(this);
         addFood = findViewById(R.id.food_add_button);
 
-//        Attaches handler to the thread's main looper
-        handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (!isFinishing() && !isDestroyed()) {
-                    Toast.makeText(FoodDiary.this, "Task Delayed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }, 1000);
-
-        dialog = new Dialog(this);
-
-
-        Thread.setDefaultUncaughtExceptionHandler((thread, e) -> {
-            Log.e("UncaughtException", "Uncaught exception in thread: " + thread.getName(), e);
-        });
-
-
 
         //Set date to display
         dateText = findViewById(R.id.txt_date);
         String currentDate = getCurrentDate();
         dateText.setText(currentDate);
 
+        drawLayout = findViewById(R.id.navFoodLayout);
+
+        navigationView = findViewById(R.id.navigationFoodView);
+
+
+        View headerView = navigationView.getHeaderView(0);
+        profilePicture = headerView.findViewById(R.id.profilePic);
+        usernameProfile = headerView.findViewById(R.id.proUsername);
+
+
+        navigationView.setNavigationItemSelectedListener(item -> {
+            int id = item.getItemId();
+            handleNavigationItemClick(id);
+            return true;
+        });
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users/" + FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        databaseReference.child("profilePicture").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String profilePictureUrl = snapshot.getValue(String.class);
+                if (profilePictureUrl != null) {
+                    Glide.with(FoodDiary.this).load(profilePictureUrl).into(profilePicture);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+                Log.w("Activity Error", "loadPost:onCancelled", error.toException());
+            }
+        });
+
+        databaseReference.child("username").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String usernameData = snapshot.getValue(String.class);
+                if (usernameData != null) {
+                    usernameProfile.setText(usernameData);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+                Log.w("Activity Error", "loadPost:onCancelled", error.toException());
+            }
+        });
+
+        setUpGestureHandler();
+
+        profilePicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(FoodDiary.this, Profile.class));
+
+                drawLayout.closeDrawer(GravityCompat.START);
+            }
+        });
+        drawLayout.closeDrawer(GravityCompat.START);
+
         addFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LayoutInflater inflater = (LayoutInflater) FoodDiary.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View viewInput = inflater.inflate(R.layout.food_input,null,false);
+                View viewInput = inflater.inflate(R.layout.food_input, null, false);
                 Spinner mealTypeSpinner = viewInput.findViewById(R.id.meal_type);
                 EditText mealDescription = viewInput.findViewById(R.id.edt_meal_description);
 
@@ -124,14 +162,13 @@ public class FoodDiary extends AppCompatActivity implements FoodAdapter.OnPhotoC
                                 String mealType = mealTypeSpinner.getSelectedItem().toString();
 
 
-
                                 Food food = new Food(-1, date, mealType, mealDesc);
 
                                 long isInserted = new FoodHandler(FoodDiary.this).create(food);
 
                                 if (isInserted != -1) {
                                     food.setId((int) isInserted);
-                                    currentMealId = isInserted;
+                                    Log.d("AddedFood", "Food added with Meal ID: " + isInserted);
                                     Toast.makeText(FoodDiary.this, "Entry Saved", Toast.LENGTH_SHORT).show();
                                     loadFoods(dateText.getText().toString());
                                 } else {
@@ -146,7 +183,7 @@ public class FoodDiary extends AppCompatActivity implements FoodAdapter.OnPhotoC
         recyclerView = findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ItemTouchHelper.SimpleCallback itemTouchCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        ItemTouchHelper.SimpleCallback itemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
@@ -155,21 +192,17 @@ public class FoodDiary extends AppCompatActivity implements FoodAdapter.OnPhotoC
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
-                if (direction == ItemTouchHelper.LEFT) {
-                    if (position != RecyclerView.NO_POSITION && position < foods.size()) {
-                        if (new FoodHandler(FoodDiary.this).delete(foods.get(position).getId())) {
-                            foods.remove(position);
-                            foodAdapter.notifyItemRemoved(position);
-                            foodAdapter.notifyItemRangeChanged(position, foods.size());
-                        } else {
-                            Toast.makeText(FoodDiary.this, "Failed to delete food", Toast.LENGTH_SHORT).show();
-                            foodAdapter.notifyItemChanged(position);
-                        }
+                if (position != RecyclerView.NO_POSITION && position < foods.size()) {
+                    if (new FoodHandler(FoodDiary.this).delete(foods.get(position).getId())) {
+                        foods.remove(position);
+                        foodAdapter.notifyItemRemoved(position);
+                        foodAdapter.notifyItemRangeChanged(position, foods.size());
                     } else {
-                        Log.e("FoodDiary", "Food list is null or invalid");
+                        Toast.makeText(FoodDiary.this, "Failed to delete food", Toast.LENGTH_SHORT).show();
+                        foodAdapter.notifyItemChanged(position);
                     }
-                } else if (direction == ItemTouchHelper.RIGHT) {
-                    showPhotosForFood(position);
+                } else {
+                    Log.e("FoodDiary", "Food list is null or invalid");
                 }
             }
         };
@@ -178,7 +211,6 @@ public class FoodDiary extends AppCompatActivity implements FoodAdapter.OnPhotoC
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
         loadFoods(dateText.getText().toString());
-
         prevDay = findViewById(R.id.previous_day);
         nextDay = findViewById(R.id.next_day);
 
@@ -213,7 +245,7 @@ public class FoodDiary extends AppCompatActivity implements FoodAdapter.OnPhotoC
             }
 
         };
-        foodAdapter = new FoodAdapter(foods, this, listener,this);
+        foodAdapter = new FoodAdapter(foods, this, listener);
         recyclerView.setAdapter(foodAdapter);
     }
 
@@ -256,21 +288,6 @@ public class FoodDiary extends AppCompatActivity implements FoodAdapter.OnPhotoC
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 100 && resultCode == RESULT_OK) {
-            Log.d("FoodDiary", "Photo Result Received, Current meal ID: " + currentMealId);
-            if (currentPhotoPath != null && currentMealId != -1) {
-                Photo photo = new Photo(-1, (int) currentMealId, currentPhotoPath);
-                boolean photoAdded = new FoodHandler(this).addPhoto(photo);
-                if (!photoAdded) {
-                    Log.e("FoodHandler", "Failed to add photo for mealID: " + currentMealId);
-                } else {
-                    Log.i("FoodDiary", "Photo path added successfully.");
-                }
-
-            } else {
-                Log.e("FoodHandler", "Failed to add photo for mealID: " + currentMealId);
-            }
-        }
 
         if (requestCode == 1) {
             loadFoods(dateText.getText().toString());
@@ -339,37 +356,47 @@ public class FoodDiary extends AppCompatActivity implements FoodAdapter.OnPhotoC
 
     }
 
-    private void takePhoto() {
-        Intent pictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (pictureIntent.resolveActivity(getPackageManager()) != null) {
-            File photoFile = null;
+    public void setUpGestureHandler() {
 
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                Toast.makeText(this, "Unable to create Image file", Toast.LENGTH_SHORT).show();
+        gesture = new GestureDetector(this, new GestureDetector.OnGestureListener() {
+            @Override
+            public boolean onDown(@NonNull MotionEvent e) {
+                return false;
             }
-            if (photoFile != null){
-                Log.d("Food Diary", "Photo taken: " + photoFile);
-                imageUri = FileProvider.getUriForFile(this,
-                        "com.oisin.fit2plan.file-provider", photoFile);
 
-                pictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-                startActivityForResult(pictureIntent, 100);
-            } else {
-                Log.e("FoodDiary", "Photo null" );
+            @Override
+            public void onShowPress(@NonNull MotionEvent e) {
+
             }
-        }
-    }
 
-    private File createImageFile() throws IOException {
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault())
-                .format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(imageFileName, ".jpg", storageDir);
-        currentPhotoPath = image.getAbsolutePath();
-        return image;
+            @Override
+            public boolean onSingleTapUp(@NonNull MotionEvent e) {
+                return false;
+            }
+
+            @Override
+            public boolean onScroll(@Nullable MotionEvent e1, @NonNull MotionEvent e2, float distanceX, float distanceY) {
+                return false;
+            }
+
+            @Override
+            public void onLongPress(@NonNull MotionEvent e) {
+
+            }
+
+            @Override
+            public boolean onFling(@Nullable MotionEvent e1, @NonNull MotionEvent e2, float velocityX, float velocityY) {
+                if (e2.getX() - e1.getX() > 100) { //swipe left to right
+                    drawLayout.openDrawer(GravityCompat.START);
+                    return true;
+                } else if (e1.getX() - e2.getX() > 100) {
+                    if (drawLayout.isDrawerOpen(GravityCompat.START)) {
+                        drawLayout.closeDrawer(GravityCompat.START);
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     public void refreshFood() {
@@ -379,71 +406,30 @@ public class FoodDiary extends AppCompatActivity implements FoodAdapter.OnPhotoC
             foodAdapter.notifyDataSetChanged();
         }
     }
-
-    @Override
-    public void onTakePhoto(int mealId) {
-        if (checkSelfPermission(android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            currentMealId = mealId;
-            takePhoto();
-        } else {
-            String [] permission = new String[]{Manifest.permission.CAMERA};
-            requestPermissions(permission, CAMERA_PERMISSIONS_CODE);
-            Toast.makeText(FoodDiary.this, "Please Enable Camera Permissions", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void showPhotosForFood(int foodId) {
-        List<Photo> photos = foodHandler.getPhotos(foodId);
-        if (!photos.isEmpty()) {
-            showPhoto(photos.get(0).getPhotoPath());
-        } else {
-            Toast.makeText(this, "No Photos logged for this meal.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void showPhoto(String photoPath) {
-        if (photoPath != null) {
-            Log.e("showPhoto", "Photo path is null");
-        }
-        Dialog photoDialog = new Dialog(this);
-        photoDialog.setContentView(R.layout.image_view);
-
-        imageView = findViewById(R.id.imageView);
-        backBtn = findViewById(R.id.back_button);
-
-        if (imageView == null) {
-            Log.e("showPhoto", "ImageView not found");
-            return;
-        }
-
-        Glide.with(this).load(photoPath).into(imageView);
-        backBtn.setOnClickListener(v -> {
-            photoDialog.dismiss();
-        });
-        photoDialog.show();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (handler != null) {
-            handler.removeCallbacksAndMessages(null);
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (dialog !=null && dialog.isShowing()) {
-            dialog.dismiss();
-        }
-
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
         refreshFood();
+    }
+
+    private void handleNavigationItemClick(int id) {
+        Intent intent = null;
+        if (id == R.id.navHome) {
+            intent = new Intent(FoodDiary.this, MainActivity.class);
+        } else if (id == R.id.foodDiaryPage) {
+            intent = new Intent(FoodDiary.this, FoodDiary.class);
+        } else if (id == R.id.workoutDiaryPage) {
+            intent = new Intent(FoodDiary.this, WorkoutDiary.class);
+        } else if (id == R.id.chatRoomPage) {
+            intent = new Intent(FoodDiary.this, Friends.class);
+        } else if (id == R.id.nutritionCalculatorPage) {
+            intent = new Intent(FoodDiary.this, NutritionCalculator.class);
+        }
+
+        if (intent != null) {
+            startActivity(intent);
+            drawLayout.closeDrawer(GravityCompat.START);
+        }
     }
 
     @Override

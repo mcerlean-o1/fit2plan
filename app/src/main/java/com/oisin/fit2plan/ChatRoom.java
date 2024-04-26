@@ -1,6 +1,7 @@
 package com.oisin.fit2plan;
 
 import android.os.Bundle;
+import android.view.GestureDetector;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,6 +28,7 @@ public class ChatRoom extends AppCompatActivity {
     private RecyclerView recyclerView;
 
     private EditText edtMessage;
+    GestureDetector gesture;
     private TextView messageUsername;
     private String friendUsername, friendEmail, chatRoomId;
     private ProgressBar progressBar;
@@ -118,4 +120,5 @@ public class ChatRoom extends AppCompatActivity {
             }
         });
     }
+
 }

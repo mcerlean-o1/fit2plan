@@ -19,12 +19,10 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodHandler> {
     Context context;
     ItemClicked itemClicked;
     ViewGroup parent;
-    OnPhotoClickListener photoClickListener;
-    public FoodAdapter(ArrayList<Food> arrayList, Context context, ItemClicked itemClicked, OnPhotoClickListener photoClickListener) {
+    public FoodAdapter(ArrayList<Food> arrayList, Context context, ItemClicked itemClicked) {
         foods = arrayList;
         this.context = context;
         this.itemClicked = itemClicked;
-        this.photoClickListener = photoClickListener;
     }
     @NonNull
     @Override
@@ -39,12 +37,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodHandler> {
         Food food = foods.get(position);
         holder.mealType.setText(food.getMealType());
         holder.mealDescription.setText(food.getDescription());
-
-        holder.imageBtn.setOnClickListener(v -> {
-            if (photoClickListener != null) {
-                photoClickListener.onTakePhoto(food.getId());
-            }
-        });
 
     }
 
@@ -74,8 +66,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodHandler> {
             date = itemView.findViewById(R.id.txt_date);
             mealType = itemView.findViewById(R.id.title_meal);
             mealDescription = itemView.findViewById(R.id.meal_description);
-
-            imageBtn = itemView.findViewById(R.id.addImage);
             editButton = itemView.findViewById(R.id.edit_button);
 
             itemView.setOnClickListener(v -> {
@@ -96,11 +86,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodHandler> {
 
         }
     }
-
-    public interface OnPhotoClickListener {
-        void onTakePhoto(int mealId);
-    }
-
     interface ItemClicked {
         void onClick(int position, View view);
     }

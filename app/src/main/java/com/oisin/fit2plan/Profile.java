@@ -288,6 +288,8 @@ public class Profile extends AppCompatActivity {
             intent = new Intent(Profile.this, WorkoutDiary.class);
         } else if (id == R.id.chatRoomPage) {
             intent = new Intent(Profile.this, Friends.class);
+        } else if (id == R.id.nutritionCalculatorPage) {
+            intent = new Intent(Profile.this, NutritionCalculator.class);
         }
 
         if (intent != null) {

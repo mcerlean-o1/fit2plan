@@ -8,7 +8,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,21 +18,18 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Locale;
-
 public class MainActivity extends AppCompatActivity {
 
     CoreFourView core4view;
 
     ImageView profilePicture;
-    TextView usernameProfile, bmrTxt, tdeeTxt;
+    TextView usernameProfile;
     GestureDetector gesture;
     DrawerLayout drawLayout;
     NavigationView navigationView;
@@ -43,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        bmrTxt = findViewById(R.id.bmrTxtView);
-        tdeeTxt = findViewById(R.id.tdeeTxtView);
         core4view = findViewById(R.id.core_four_view);
 
         drawLayout = findViewById(R.id.navLayout);
@@ -127,6 +120,8 @@ public class MainActivity extends AppCompatActivity {
             intent = new Intent(MainActivity.this, WorkoutDiary.class);
         } else if (id == R.id.chatRoomPage) {
             intent = new Intent(MainActivity.this, Friends.class);
+        } else if (id == R.id.nutritionCalculatorPage) {
+            intent = new Intent(MainActivity.this, NutritionCalculator.class);
         }
 
         if (intent != null) {
@@ -177,43 +172,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
     }
-
-    public void calculateBMRAndTDEE(View view) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
-            reference.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    User currentUser = snapshot.getValue(User.class);
-                    if (currentUser != null) {
-                        bmrTxt.setVisibility(View.VISIBLE);
-                        tdeeTxt.setVisibility(View.VISIBLE);
-                        double bmr = CalorieCalculator.calculateBMR(currentUser);
-                        double tdee = CalorieCalculator.calculateTDEE(currentUser);
-                        displayResults(bmr, tdee);
-                    } else {
-                        bmrTxt.setVisibility(View.GONE);
-                        tdeeTxt.setVisibility(View.GONE);
-                        Toast.makeText(MainActivity.this, "Need Profile to view BMR and TDEE", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }
-    }
-
-    private void displayResults(double bmr, double tdee) {
-        bmrTxt.setText(String.format(Locale.getDefault(), "BMR: \n %.0f cals", bmr));
-        tdeeTxt.setText(String.format(Locale.getDefault(), "Recommended Calories Today: \n %.0f cals", tdee));
-        Log.d("MainActivity", "BMR: " + bmr + " TDEE: " + tdee);
-
-    }
-
 
     @Override
     protected void onResume() {
