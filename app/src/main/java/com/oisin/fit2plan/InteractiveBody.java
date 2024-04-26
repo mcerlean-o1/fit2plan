@@ -16,16 +16,21 @@ import java.util.List;
 
 public class InteractiveBody extends AppCompatActivity {
 
-    Button chestBtn, coreBtn, quadBtn;
+    Button backBtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.human_body);
 
-        chestBtn = findViewById(R.id.button_chest);
-        coreBtn = findViewById(R.id.button_core);
-        quadBtn = findViewById(R.id.button_quads);
+        backBtn = findViewById(R.id.back_button_body);
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     public void OnChestClick(View v) {
@@ -91,6 +96,86 @@ public class InteractiveBody extends AppCompatActivity {
         dialog.show();
 
     }
+
+    public void OnUpperBackClick(View v) {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.upper_back_workouts);
+
+        RecyclerView recyclerView = dialog.findViewById(R.id.upper_back_recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        displayUpperBackWorkouts(recyclerView);
+
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.show();
+
+    }
+
+    public void OnLowerBackClick(View v) {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.lower_back_workouts);
+
+        RecyclerView recyclerView = dialog.findViewById(R.id.lower_back_recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        displayLowerBackWorkouts(recyclerView);
+
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.show();
+
+    }
+
+    public void OnHipClick(View v) {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.hip_workouts);
+
+        RecyclerView recyclerView = dialog.findViewById(R.id.hip_recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        displayHipWorkouts(recyclerView);
+
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.show();
+
+    }
+
+
+    public void OnHamstringClick(View v) {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.hamstring_workouts);
+
+        RecyclerView recyclerView = dialog.findViewById(R.id.hamstring_recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        displayHamstringWorkouts(recyclerView);
+
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.show();
+
+    }
+
+    public void OnCalfClick(View v) {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.calf_workouts);
+
+        RecyclerView recyclerView = dialog.findViewById(R.id.calf_recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        displayCalfWorkouts(recyclerView);
+
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.show();
+
+    }
+
+    public void OnTricepClick(View v) {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.tricep_workouts);
+
+        RecyclerView recyclerView = dialog.findViewById(R.id.tricep_recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        displayTricepWorkouts(recyclerView);
+
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.show();
+
+    }
+
 
     public void displayChestWorkouts(RecyclerView recyclerView) {
         List<WorkoutBody> workoutBodyList = new ArrayList<>();
@@ -256,5 +341,154 @@ public class InteractiveBody extends AppCompatActivity {
                 .build());
 
         recyclerView.setAdapter(new WorkoutBodyAdapter(workoutBodyList));
+    }
+
+    public void displayUpperBackWorkouts(RecyclerView recyclerView) {
+        List<WorkoutBody> workoutBodyList = new ArrayList<>();
+
+        String pull_ups = getResources().getString(R.string.pull_up);
+        String db_bentover_row = getResources().getString(R.string.bent_over_row);
+        String renegade_rows = getResources().getString(R.string.renegade_rows);
+        String pullover = getResources().getString(R.string.pullover);
+        String db_shrugs = getResources().getString(R.string.dumbbell_shrugs);
+
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Pull Ups")
+                .setWorkoutDesc(pull_ups)
+                .build());
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Bent Over Row")
+                .setWorkoutDesc(db_bentover_row)
+                .build());
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Renegade Rows")
+                .setWorkoutDesc(renegade_rows)
+                .build());
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("DB Pullover")
+                .setWorkoutDesc(pullover)
+                .build());
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("DB Shrugs")
+                .setWorkoutDesc(db_shrugs)
+                .build());
+
+        recyclerView.setAdapter(new WorkoutBodyAdapter(workoutBodyList));
+    }
+
+    public void displayLowerBackWorkouts(RecyclerView recyclerView) {
+        List<WorkoutBody> workoutBodyList = new ArrayList<>();
+
+        String deadlift = getResources().getString(R.string.deadlifts);
+        String supermans = getResources().getString(R.string.supermans);
+        String good_mornings = getResources().getString(R.string.good_mornings);
+
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Deadlifts")
+                .setWorkoutDesc(deadlift)
+                .build());
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Supermans")
+                .setWorkoutDesc(supermans)
+                .build());
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Good Mornings")
+                .setWorkoutDesc(good_mornings)
+                .build());
+
+        recyclerView.setAdapter(new WorkoutBodyAdapter(workoutBodyList));
+    }
+
+    public void displayHipWorkouts(RecyclerView recyclerView) {
+        List<WorkoutBody> workoutBodyList = new ArrayList<>();
+
+        String glute_bridges = getResources().getString(R.string.glute_bridges);
+        String side_leg_raises = getResources().getString(R.string.side_leg_raises);
+        String clamshells = getResources().getString(R.string.clamshells);
+
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Glute Bridges")
+                .setWorkoutDesc(glute_bridges)
+                .build());
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Side Leg Raises")
+                .setWorkoutDesc(side_leg_raises)
+                .build());
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Clamshells")
+                .setWorkoutDesc(clamshells)
+                .build());
+
+        recyclerView.setAdapter(new WorkoutBodyAdapter(workoutBodyList));
+    }
+
+
+    public void displayHamstringWorkouts(RecyclerView recyclerView) {
+        List<WorkoutBody> workoutBodyList = new ArrayList<>();
+
+        String rdl = getResources().getString(R.string.romanian_deadlifts);
+        String hamstring_curls = getResources().getString(R.string.hamstring_curls);
+        String nordic_holds = getResources().getString(R.string.nordic_holds);
+
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Romanian Deadlifts")
+                .setWorkoutDesc(rdl)
+                .build());
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Hamstring Curls")
+                .setWorkoutDesc(hamstring_curls)
+                .build());
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Nordic Holds")
+                .setWorkoutDesc(nordic_holds)
+                .build());
+
+        recyclerView.setAdapter(new WorkoutBodyAdapter(workoutBodyList));
+    }
+
+    public void displayCalfWorkouts(RecyclerView recyclerView) {
+        List<WorkoutBody> workoutBodyList = new ArrayList<>();
+
+        String jump_ropes = getResources().getString(R.string.jump_rope);
+        String calf_raises = getResources().getString(R.string.calf_raises);
+
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Jump Rope")
+                .setWorkoutDesc(jump_ropes)
+                .build());
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Calf Raises")
+                .setWorkoutDesc(calf_raises)
+                .build());
+
+        recyclerView.setAdapter(new WorkoutBodyAdapter(workoutBodyList));
+    }
+
+    public void displayTricepWorkouts(RecyclerView recyclerView) {
+        List<WorkoutBody> workoutBodyList = new ArrayList<>();
+
+        String dips = getResources().getString(R.string.dips);
+        String skull_crushers = getResources().getString(R.string.skull_crushers);
+        String close_grip_bench_press = getResources().getString(R.string.close_grip_bench_press);
+
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Dips")
+                .setWorkoutDesc(dips)
+                .build());
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Skull Crushers")
+                .setWorkoutDesc(skull_crushers)
+                .build());
+        workoutBodyList.add(new WorkoutBody.Build()
+                .setWorkoutName("Close Grip Bench Press")
+                .setWorkoutDesc(close_grip_bench_press)
+                .build());
+
+        recyclerView.setAdapter(new WorkoutBodyAdapter(workoutBodyList));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

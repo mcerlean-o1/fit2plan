@@ -49,7 +49,7 @@
     <string name="crunches"> Similar to the sit up. Lay flat on the ground and bend the legs at a 90 degree angle while keeping the feet flat on the ground.
         Instead of raising the whole torso, raise the upper torso while the core is engaged.
         Raise further until the abdomen is squeezed. 
-        Once copmleted, lower the back to the ground and repeat the process. Keep hands behind back.
+        Once completed, lower the back to the ground and repeat the process. Keep hands behind back.
     </string>
     
     <string name="hollow_body_hold"> Lay on the ground with the upper back slightly off the ground.
@@ -119,6 +119,82 @@
 
     <string name="incline_db_curl"> Set at an adjustable bench to a 45-degree angle. Sit on the bench with dumbbells on each hand, arms fully extended towards the floor, palms facing forward.
     Keep upper arms stationary, inhale as you curl the dumbbells upward towards the shoulders, exhale while lowering the dumbbells back down to the starting position.</string>
+
+    <string name="pull_up"> Stand underneath a an overhead horizontal bar that can support body weight.
+    Drip the bar with your hands, ensure they are shoulder-width apart, make sure palms are either with facing forward or towards you.
+    Engage your core to keep body stabilised and pull yourself upwards, inhale on your way up. When the shoulders are level with your hands, lower yourself under control to the starting position.</string>
+
+    <string name="bent_over_row"> Stand with your feet shoulder-width apart, holding a dumbbell in each hand with your palms facing the body.
+        Bend at the waist until the chest is parallel to the floor and knees are slightly bent.
+        Inhale as you pull the dumbbells up towards your rib cage, keeping the elbows close to your body.
+        Exhale as you lower the dumbbells back to the starting position.
+    </string>
+
+    <string name="renegade_rows"> In a plank position. fully extend the arms with dumbbells on each hand.
+        Align wrists with shoulders, engage your core and keep your body in a straight line.
+        Inhale as you row one dumbbell towards your rib-cage, ensure your hips do not move.
+        Exhale as you lower the dumbbell to the starting position.
+        Alternate with the other dumbbell on the other side.
+    </string>
+
+    <string name="dumbbell_shrugs"> Stand tall with dumbbells on both hands, arms fully extended, both palms facing the body.
+    Inhale as you shrug your shoulders upwards towards your ears, squeezing the upper traps at the top of the movement.
+    Exhale as you lower your shoulders to the starting position.</string>
+
+    <string name="deadlifts"> Stand with your feet hip-width apart, toes pointing forward, Grip the barbell or dumbbells with your hands shoulder-width apart.
+    Bend hips and lower yourself down, make sure the back is kept straight and chest up.
+    Drive through the heels to lift the weight, ensure chest is up and core engaged to the point where the arms are fully extended.
+    Once the body is straight and that the weights are level with the hips. Bring the wright back down towards the floor, if using the barbells, ensure it is touching the floor, and if you are using dumbbells, make sure they are positioned below the knees. </string>
+
+    <string name="supermans"> Lie face down on the ground with both arms extended overhead and your legs straight.
+    Engage the lower back and glutes as you lift your arms.
+    Chest and legs must stay off the ground simultaneously.
+    Hold the top position for a few seconds and lower back down with control.</string>
+
+    <string name="good_mornings"> Stand tall with a barbell on your traps, engage your core and keep the back straight. Hinge at your hips to lean forward and lower the chest until it is parallel to the ground.
+    Ensure your knees are bent slightly during the movement. drive the heels forward to return to the starting position.</string>
+
+    <string name="glute_bridges"> Lie on your back with bent knees and feet flat at hip-width apart.
+    Engage core and glutes as you lift your hips towards the ceiling. Squeeze your glutes at the top of the movement, then slowly lower your hips back down to the starting position.
+    Optionally, place a barbell on your hips to add more weight and intensity to the movement.</string>
+
+    <string name="side_leg_raises"> Lie on your side with your legs straight and stacked on top of each other.
+        Support your upper body by holding onto something and keep your head aligned with your spine.
+        Engage your core and lift with your top leg toward the ceiling as high as you can without rotating your hips.
+        Hold the top position briefly, then lower your leg back down under control. To add more resistance and intensity, attach a resistance band on your heels then carry on with the movement.
+    </string>
+
+    <string name="clamshells"> Lie on your side with your hips and knees bent, head resting on your bottom arm.
+    Keep your feet together and lift your top knee as high as you can while keeping your feet in contact with each other.
+    Hold the top position briefly, then lower your knee back down with control.</string>
+
+    <string name="romanian_deadlifts"> Stand with your feet hip-width apart, knees slightly bent and hold a barbell or a pair of dumbbells on both hands.
+        Palms should face the thighs. Engage your core and keep your back straight and chest up, hinge the hips to lower the weight towards the ground until you feel a stretch in your hamstrings.
+        Drive through the heels and extend your hips to return to the starting position, squeezing the glutes at the top.
+    </string>
+
+    <string name="hamstring_curls"> Attach a resistance band above the foot, turn the body so the chest faces the ground and lie flat on the ground with the whole body straight.
+    keep glutes engaged as you curl the feet towards the glutes, contracting your hamstrings. Slowly lower the feet to the starting position.</string>
+
+    <string name="nordic_holds"> Secure your feet so that it is under a foot plate, or have someone hold your ankles.
+    Keep torso straight with chest up and engage glutes and core. lean the torso forward until you feel a contraction in the hamstrings.
+    Lift the body back to the starting position.</string>
+
+    <string name="jump_rope"> Hold a jump rope in both hands with your palms facing forward.
+    Jump off the ground with both feet simultaneously using your calves to propel yourself off the ground.
+    while your jumping, make sure the swinging jump rope slips through your feet.
+    Once you land softly on the top of your feet. propel yourself off the ground once again to repeat the movement.</string>
+
+    <string name="calf_raises"> stand with the feet on the edge of a step with the heels hanging off the edge. slowly elevate you heels as high as you possibly can lift it.
+    pause at the top and lower your heels back down below the level of the step to stretch your calves.</string>
+
+    <string name="skull_crushers"> Lie on the flat bench with either a dumbbell on each hand with palms facing each other or a barbell with the palms facing forward.
+    Extend the arms out fully and inhale as you slowly lower the dumbbells/barbells.
+    the weight must be above your forehead by bending your elbows, keep upper arms stationary.
+    exhale as you bring the weight up to the starting position.</string>
+
+    <string name="close_grip_bench_press"> Lie flat on the bench and grasp the barbell with your hands positioned closer than shoulder-width apart.
+    Inhale as you slowly bring the barbell towards your chest, pause briefly and bring the barbell back up to the starting position.</string>
 
 
 </resources>

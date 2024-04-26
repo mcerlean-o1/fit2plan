@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     GestureDetector gesture;
     DrawerLayout drawLayout;
     NavigationView navigationView;
-    //FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,17 +177,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
     }
-
-
-
-//    private void updateUI(FirebaseUser user1) {
-//        usernameProfile.setText(user1.getDisplayName());
-//
-//        if (user1.getPhotoUrl() != null) {
-//            Glide.with(this).load(user1.getPhotoUrl()).into(profilePicture);
-//        }
-//
-//    }
 
     public void calculateBMRAndTDEE(View view) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
