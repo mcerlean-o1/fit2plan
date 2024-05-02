@@ -69,7 +69,7 @@ public class FoodDiary extends AppCompatActivity {
         addFood = findViewById(R.id.food_add_button);
 
 
-        //Set date to display
+
         dateText = findViewById(R.id.txt_date);
         String currentDate = getCurrentDate();
         dateText.setText(currentDate);

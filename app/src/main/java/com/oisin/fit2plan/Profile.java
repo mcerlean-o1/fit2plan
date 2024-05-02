@@ -223,7 +223,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 deleteUser();
-                startActivity(new Intent(Profile.this, SignUp.class));
+                startActivity(new Intent(Profile.this, SignUp.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
             }
         });
@@ -236,8 +236,6 @@ public class Profile extends AppCompatActivity {
 
         if (user != null) {
             userDataDelete(user);
-        } else {
-            Log.e("Profile", "User already deleted");
         }
     }
 

@@ -57,7 +57,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodHandler> {
         TextView mealType;
         TextView mealDescription;
 
-        ImageButton editButton, imageBtn;
+        ImageButton editButton;
 
 
         public FoodHandler(@NonNull View itemView) {

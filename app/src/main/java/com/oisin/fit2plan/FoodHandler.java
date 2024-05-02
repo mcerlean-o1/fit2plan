@@ -95,12 +95,9 @@ public class FoodHandler extends FoodDatabase {
         boolean exists = cursor.moveToFirst();
 
         if (!exists) {
-            Log.e("FoodHandler", "Item doesn't exist, ID: " + id);
             db.close();
             cursor.close();
             return false;
-        } else {
-            Log.d("FoodHandler", "Item exists:");
         }
 
         int isDeleted = db.delete("Food", "id = ?", selectionArgs);
@@ -148,63 +145,4 @@ public class FoodHandler extends FoodDatabase {
 
 
     }
-
-    public boolean addPhoto(Photo photo) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues vals = new ContentValues();
-        vals.put("mealID", photo.getMealID());
-        vals.put("PhotoPath", photo.getPhotoPath());
-
-
-
-        long result = db.insert("Photos", null, vals);
-
-        if (result == -1) {
-            Log.e("FoodHandler", "Photo Insert failed");
-        } else {
-            Log.i("FoodHandler", "Photo inserted with ID: " + result);
-            photo.setPhotoID((int) result);
-        }
-        db.close();
-        return result != -1;
-
-    }
-
-    public List<Photo> getPhotos(int mealId) {
-        List<Photo> photos = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query("Photos", new String[] { "photoID", "mealID", "PhotoPath" },
-                "mealID = ?", new String[]{String.valueOf(mealId)},
-                null, null, null);
-        if (cursor != null) {
-            Log.d("FoodHandler", "Number of photos retrieved: " + cursor.getCount());
-            if (cursor.moveToFirst()) {
-                {
-                    do {
-                        int photoId = cursor.getInt(cursor.getColumnIndex("photoID"));
-                        String photoPath = cursor.getString(cursor.getColumnIndex("PhotoPath"));
-                        Photo photo = new Photo(photoId, mealId, photoPath);
-                        photos.add(photo);
-                        Log.d("FoodHandler", "Retrieved photo: ID=" + photoId + ", Path=" + photoPath);
-                    } while (cursor.moveToNext());
-                }
-            } else {
-                Log.e("FoodHandler", "No photos found for mealID: " + mealId);
-            }
-            cursor.close();
-            db.close();
-        }
-
-        return photos;
-    }
-
-    public boolean deletePhoto(int photoId) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        int deleteRows = db.delete("Photos", "photoID =?", new String[]{String.valueOf(photoId)});
-        db.close();
-        return deleteRows > 0;
-    }
-
-
 }

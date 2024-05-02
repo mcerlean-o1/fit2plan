@@ -68,6 +68,7 @@ public class EditProfile extends AppCompatActivity {
             public void onClick(View v) {
                 saveUser();
                 startActivity(new Intent(EditProfile.this, Profile.class));
+                Toast.makeText(EditProfile.this, "User Details Saved.", Toast.LENGTH_SHORT).show();
             }
         });
     }
